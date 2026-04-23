@@ -3,399 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Amplify Arcade</title>
+  <title>Amplify Lessons</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Mono&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --cyan: #00ffb4;
-      --pink: #ff3c6e;
-      --yellow: #ffec00;
-      --bg: #0a0a12;
-      --surface: #11111f;
-      --border: #222240;
-      --text: #e0e0e0;
-      --muted: #888;
-    }
-
-    html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'VT323', monospace;
-      background: var(--bg);
-      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      background: #111113;
+      color: #e8e8e8;
       min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /* CRT scanlines */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(
-        to bottom,
-        transparent 0px,
-        transparent 3px,
-        rgba(0, 0, 0, 0.15) 3px,
-        rgba(0, 0, 0, 0.15) 4px
-      );
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    /* Grid background */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(0,255,180,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,180,0.04) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
+      padding: 3rem 1.5rem;
     }
 
     .wrap {
-      position: relative;
-      z-index: 10;
-      max-width: 900px;
+      max-width: 640px;
       margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
     }
 
-    /* ── NAV ── */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid var(--cyan);
-      padding-bottom: 0.75rem;
+    header {
       margin-bottom: 3rem;
     }
 
-    .nav-logo {
-      font-family: 'Press Start 2P', monospace;
+    .site-label {
+      font-family: 'DM Mono', monospace;
       font-size: 12px;
-      color: var(--cyan);
-      text-shadow: 0 0 10px var(--cyan);
-      letter-spacing: 2px;
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: 'VT323', monospace;
-      font-size: 22px;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 1px;
-      transition: color 0.1s;
-    }
-
-    .nav-links a:hover { color: var(--yellow); }
-
-    /* ── HERO ── */
-    .hero {
-      text-align: center;
-      padding: 2.5rem 0 2rem;
-    }
-
-    .hero-eyebrow {
-      font-size: 22px;
-      color: var(--pink);
-      letter-spacing: 4px;
-      margin-bottom: 0.75rem;
-      animation: blink 1.2s step-end infinite;
-    }
-
-    .hero-title {
-      font-family: 'Press Start 2P', monospace;
-      font-size: clamp(22px, 5vw, 42px);
-      line-height: 1.5;
-      color: #fff;
-      text-shadow: 4px 4px 0 var(--cyan), 8px 8px 0 var(--pink);
-      margin-bottom: 1.25rem;
-      letter-spacing: 3px;
-    }
-
-    .hero-sub {
-      font-size: 24px;
-      color: var(--muted);
-      letter-spacing: 2px;
-    }
-
-    .coin-prompt {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 10px;
-      color: var(--yellow);
-      letter-spacing: 2px;
-      margin-top: 1.75rem;
-      animation: blink 0.9s step-end infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    /* ── TICKER ── */
-    .ticker-wrap {
-      overflow: hidden;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 0.6rem 0;
-      margin: 2.5rem 0;
-    }
-
-    .ticker-inner {
-      display: flex;
-      gap: 3rem;
-      animation: ticker 20s linear infinite;
-      white-space: nowrap;
-      width: max-content;
-    }
-
-    @keyframes ticker {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    .ticker-item {
-      font-size: 20px;
-      color: #444;
-      letter-spacing: 2px;
-    }
-
-    .ticker-item span { color: var(--cyan); margin-right: 0.5rem; }
-
-    /* ── SECTION LABEL ── */
-    .section-label {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 9px;
-      color: var(--cyan);
-      letter-spacing: 3px;
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--cyan);
-      opacity: 0.25;
-    }
-
-    /* ── GAME CARDS ── */
-    .games-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 3rem;
-    }
-
-    .game-card {
-      background: var(--surface);
-      border: 2px solid var(--border);
-      border-radius: 4px;
-      padding: 1.5rem 1.25rem;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.15s, transform 0.12s;
-      text-decoration: none;
-      display: block;
-      cursor: pointer;
-    }
-
-    .game-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0,255,180,0.07) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .game-card:hover {
-      border-color: var(--cyan);
-      transform: translateY(-3px);
-    }
-
-    .game-card:hover::before { opacity: 1; }
-
-    .game-card:active { transform: translateY(0); }
-
-    .game-icon {
-      font-size: 40px;
-      margin-bottom: 0.75rem;
-      display: block;
-      filter: drop-shadow(0 0 8px rgba(0,255,180,0.5));
-    }
-
-    .game-title {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 9px;
-      color: #fff;
-      margin-bottom: 0.6rem;
-      line-height: 1.7;
-      letter-spacing: 1px;
-    }
-
-    .game-tag {
-      font-size: 17px;
-      color: var(--pink);
-      letter-spacing: 2px;
-    }
-
-    .game-badge {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      font-family: 'Press Start 2P', monospace;
-      font-size: 7px;
-      background: var(--yellow);
-      color: var(--bg);
-      padding: 3px 7px;
-      letter-spacing: 1px;
-    }
-
-    /* Coming soon */
-    .game-card.soon {
-      opacity: 0.4;
-      border-style: dashed;
-      cursor: default;
-    }
-
-    .game-card.soon:hover {
-      border-color: var(--border);
-      transform: none;
-    }
-
-    .game-card.soon:hover::before { opacity: 0; }
-
-    .soon-label {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 7px;
       color: #555;
-      letter-spacing: 2px;
-      margin-top: 0.5rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.5rem;
     }
 
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid #1a1a2e;
-      padding-top: 1.5rem;
+    h1 {
+      font-size: 28px;
+      font-weight: 500;
+      color: #e8e8e8;
+    }
+
+    .lessons-list {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .lesson-link {
+      display: flex;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      justify-content: space-between;
+      background: #1c1c1f;
+      border: 1px solid #2a2a2e;
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s, background 0.15s;
     }
 
-    .footer-copy {
+    .lesson-link:hover {
+      border-color: #444;
+      background: #222226;
+    }
+
+    .lesson-name {
+      font-size: 16px;
+      font-weight: 500;
+      color: #e8e8e8;
+    }
+
+    .lesson-path {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: #555;
+      margin-top: 2px;
+    }
+
+    .arrow {
+      color: #444;
       font-size: 18px;
-      color: #333;
-      letter-spacing: 1px;
+      transition: color 0.15s, transform 0.15s;
     }
 
-    .footer-score {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 8px;
-      color: #333;
-      letter-spacing: 2px;
+    .lesson-link:hover .arrow {
+      color: #888;
+      transform: translateX(3px);
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 520px) {
-      .nav-links { gap: 1rem; }
-      .nav-links a { font-size: 18px; }
-      .hero-sub { font-size: 18px; }
+    footer {
+      margin-top: 3rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: #333;
     }
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <p class="site-label">joeyc1pro / amplify</p>
+      <h1>Lessons</h1>
+    </header>
 
-<div class="wrap">
+    <div class="lessons-list">
 
-  <nav>
-    <a href="/amplify-home-xyz/index.html" class="nav-logo">AMPLIFY</a>
-    <ul class="nav-links">
-      <li><a href="#games">GAMES</a></li>
-      <li><a href="#about">ABOUT</a></li>
-    </ul>
-  </nav>
-
-  <section class="hero">
-    <p class="hero-eyebrow">★ PLAYER 1 READY ★</p>
-    <h1 class="hero-title">AMPLIFY<br>ARCADE</h1>
-    <p class="hero-sub">SELECT YOUR GAME AND PLAY FREE</p>
-    <p class="coin-prompt">— INSERT COIN TO CONTINUE —</p>
-  </section>
-
-  <div class="ticker-wrap" aria-hidden="true">
-    <div class="ticker-inner">
-      <span class="ticker-item"><span>▶</span> DRIVE MAD NOW LIVE</span>
-      <span class="ticker-item"><span>★</span> NEW GAMES COMING SOON</span>
-      <span class="ticker-item"><span>▶</span> PLAY FREE IN YOUR BROWSER</span>
-      <span class="ticker-item"><span>★</span> NO DOWNLOADS NEEDED</span>
-      <!-- duplicate for seamless loop -->
-      <span class="ticker-item"><span>▶</span> DRIVE MAD NOW LIVE</span>
-      <span class="ticker-item"><span>★</span> NEW GAMES COMING SOON</span>
-      <span class="ticker-item"><span>▶</span> PLAY FREE IN YOUR BROWSER</span>
-      <span class="ticker-item"><span>★</span> NO DOWNLOADS NEEDED</span>
-    </div>
-  </div>
-
-  <section id="games">
-    <p class="section-label">GAME SELECT</p>
-
-    <div class="games-grid">
-
-      <!-- Drive Mad -->
-      <a class="game-card" href="/amplify-home-xyz/lessons/drive-mad">
-        <div class="game-badge">LIVE</div>
-        <span class="game-icon">🚗</span>
-        <p class="game-title">DRIVE MAD</p>
-        <p class="game-tag">RACING / PHYSICS</p>
+      <a class="lesson-link" href="./lessons/drive-mad">
+        <div>
+          <p class="lesson-name">Drive Mad</p>
+          <p class="lesson-path">/lessons/drive-mad</p>
+        </div>
+        <span class="arrow">→</span>
       </a>
 
-      <!-- Placeholder slots — replace with real games as you add them -->
-      <div class="game-card soon" aria-hidden="true">
-        <span class="game-icon">🗡️</span>
-        <p class="game-title">???</p>
-        <p class="game-tag">COMING SOON</p>
-        <p class="soon-label">LOCKED</p>
-      </div>
+      <a class="lesson-link" href="./lessons/1.8.8">
+        <div>
+          <p class="lesson-name">1.8.8</p>
+          <p class="lesson-path">/lessons/1.8.8</p>
+        </div>
+        <span class="arrow">→</span>
+      </a>
 
-      <div class="game-card soon" aria-hidden="true">
-        <span class="game-icon">👾</span>
-        <p class="game-title">???</p>
-        <p class="game-tag">COMING SOON</p>
-        <p class="soon-label">LOCKED</p>
-      </div>
+      <a class="lesson-link" href="./lessons/draw-the-hill">
+        <div>
+          <p class="lesson-name">Draw the Hill</p>
+          <p class="lesson-path">/lessons/draw-the-hill</p>
+        </div>
+        <span class="arrow">→</span>
+      </a>
 
     </div>
-  </section>
 
-  <footer id="about">
-    <span class="footer-copy">© JOEYC1PRO 2025</span>
-    <span class="footer-score">HI-SCORE: 000000</span>
-  </footer>
-
-</div>
-
+    <footer>amplify-home-xyz</footer>
+  </div>
 </body>
 </html>
