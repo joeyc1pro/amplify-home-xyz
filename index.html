@@ -97,6 +97,46 @@
       color: #777;
       transform: translateX(3px);
     }
+
+    /* Request box */
+    .request-box {
+      margin-top: 2.5rem;
+      background: #1c1c1f;
+      border: 1px solid #2a2a2e;
+      border-radius: 12px;
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+    }
+
+    .request-box h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .request-box p {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 1.25rem;
+    }
+
+    .request-btn {
+      display: inline-block;
+      background: #fff;
+      color: #111113;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 0.65rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+
+    .request-btn:hover {
+      background: #ddd;
+    }
   </style>
 </head>
 <body>
@@ -123,12 +163,6 @@
       <a class="lesson-link" href="./lessons/draw-the-hill">
         <img class="lesson-icon" src="./lessons/draw-the-hill/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
         <span class="lesson-name">Draw the Hill</span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="lesson-link" href="./lessons/rocket-league">
-        <img class="lesson-icon" src="./lessons/rocket-league/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
-        <span class="lesson-name">Rocket League</span>
         <span class="arrow">→</span>
       </a>
 
@@ -162,7 +196,44 @@
         <span class="arrow">→</span>
       </a>
 
+      <a class="lesson-link" href="./lessons/ShellShockers">
+        <img class="lesson-icon" src="./lessons/ShellShockers/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">Shell Shockers</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="lesson-link" href="./lessons/SlowRoads.io">
+        <img class="lesson-icon" src="./lessons/SlowRoads.io/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">Slow Roads.io</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="lesson-link" href="./lessons/SnowBall.io">
+        <img class="lesson-icon" src="./lessons/SnowBall.io/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">Snowball.io</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="lesson-link" href="./lessons/SnowRider">
+        <img class="lesson-icon" src="./lessons/SnowRider/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">Snow Rider</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="lesson-link" href="./lessons/SubwaySurfers">
+        <img class="lesson-icon" src="./lessons/SubwaySurfers/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">Subway Surfers</span>
+        <span class="arrow">→</span>
+      </a>
+
     </div>
+
+    <div class="request-box">
+      <h2>Don't see your lesson?</h2>
+      <p>Request a lesson and we'll try to add it.</p>
+      <a class="request-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfCt28OvhRHKWW-9WQraqTq5gkupF5agRTWlM_FKZxYIfXxLQ/viewform?usp=publish-editor" target="_blank">Request a Lesson</a>
+    </div>
+
   </div>
 </body>
 </html>
