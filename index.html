@@ -19,16 +19,10 @@
       animation: fadeIn 0.5s ease forwards;
     }
 
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
+    @keyframes fadeIn { to { opacity: 1; } }
 
-    .wrap {
-      max-width: 620px;
-      margin: 0 auto;
-    }
+    .wrap { max-width: 620px; margin: 0 auto; }
 
-    /* HEADER */
     header {
       margin-bottom: 2rem;
       animation: slideDown 0.5s ease both;
@@ -39,19 +33,9 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    h1 {
-      font-size: 32px;
-      font-weight: 600;
-      color: #fff;
-    }
+    h1 { font-size: 32px; font-weight: 600; color: #fff; }
+    p.sub { font-size: 15px; color: #555; margin-top: 0.3rem; }
 
-    p.sub {
-      font-size: 15px;
-      color: #555;
-      margin-top: 0.3rem;
-    }
-
-    /* STATS BAR */
     .stats-bar {
       display: flex;
       gap: 1rem;
@@ -68,19 +52,9 @@
       text-align: center;
     }
 
-    .stat-value {
-      font-size: 22px;
-      font-weight: 600;
-      color: #fff;
-    }
+    .stat-value { font-size: 22px; font-weight: 600; color: #fff; }
+    .stat-label { font-size: 12px; color: #555; margin-top: 1px; }
 
-    .stat-label {
-      font-size: 12px;
-      color: #555;
-      margin-top: 1px;
-    }
-
-    /* SEARCH */
     .search-wrap {
       margin-bottom: 1.25rem;
       animation: slideDown 0.5s 0.15s ease both;
@@ -100,18 +74,12 @@
     }
 
     .search-input::placeholder { color: #444; }
-
     .search-input:focus {
       border-color: #444;
       box-shadow: 0 0 0 3px rgba(255,255,255,0.04);
     }
 
-    /* LIST */
-    .lessons-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
-    }
+    .lessons-list { display: flex; flex-direction: column; gap: 0.55rem; }
 
     .lesson-link {
       display: flex;
@@ -132,36 +100,20 @@
     .lesson-link:hover {
       background: #202024;
       border-color: #444;
-      box-shadow: 0 0 16px rgba(255, 255, 255, 0.06), 0 0 32px rgba(120, 120, 255, 0.07);
+      box-shadow: 0 0 16px rgba(255,255,255,0.06), 0 0 32px rgba(120,120,255,0.07);
       transform: translateY(-1px);
       color: #fff;
     }
 
-    .lesson-link:active {
-      transform: translateY(0);
-    }
+    .lesson-link:active { transform: translateY(0); }
 
     @keyframes slideUp {
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .lesson-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-
-    .icon-placeholder {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      background: #2a2a2e;
-      flex-shrink: 0;
-    }
-
+    .lesson-icon { width: 40px; height: 40px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+    .icon-placeholder { width: 40px; height: 40px; border-radius: 8px; background: #2a2a2e; flex-shrink: 0; }
     .lesson-name { flex: 1; }
 
     .arrow {
@@ -171,21 +123,10 @@
       flex-shrink: 0;
     }
 
-    .lesson-link:hover .arrow {
-      color: #777;
-      transform: translateX(3px);
-    }
+    .lesson-link:hover .arrow { color: #777; transform: translateX(3px); }
 
-    /* NO RESULTS */
-    .no-results {
-      text-align: center;
-      color: #444;
-      font-size: 15px;
-      padding: 2rem 0;
-      display: none;
-    }
+    .no-results { text-align: center; color: #444; font-size: 15px; padding: 2rem 0; display: none; }
 
-    /* REQUEST BOX */
     .request-box {
       margin-top: 2rem;
       background: #1c1c1f;
@@ -196,18 +137,8 @@
       animation: slideUp 0.4s 0.3s ease both;
     }
 
-    .request-box h2 {
-      font-size: 17px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 0.35rem;
-    }
-
-    .request-box p {
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 1.1rem;
-    }
+    .request-box h2 { font-size: 17px; font-weight: 600; color: #fff; margin-bottom: 0.35rem; }
+    .request-box p { font-size: 14px; color: #555; margin-bottom: 1.1rem; }
 
     .request-btn {
       display: inline-block;
@@ -235,11 +166,11 @@
 
   <div class="stats-bar">
     <div class="stat">
-      <div class="stat-value" id="total-count">26</div>
+      <div class="stat-value">23</div>
       <div class="stat-label">Lessons</div>
     </div>
     <div class="stat">
-      <div class="stat-value" id="shown-count">26</div>
+      <div class="stat-value" id="shown-count">23</div>
       <div class="stat-label">Showing</div>
     </div>
     <div class="stat">
@@ -354,11 +285,6 @@
       <span class="lesson-name">Raft Wars 2</span><span class="arrow">→</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/RaftWarsMultiplayer" data-name="raft wars multiplayer">
-      <img class="lesson-icon" src="./lessons/RaftWarsMultiplayer/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
-      <span class="lesson-name">Raft Wars Multiplayer</span><span class="arrow">→</span>
-    </a>
-
     <a class="lesson-link" href="./lessons/RagdollHit" data-name="ragdoll hit">
       <img class="lesson-icon" src="./lessons/RagdollHit/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span class="lesson-name">Ragdoll Hit</span><span class="arrow">→</span>
@@ -369,19 +295,9 @@
       <span class="lesson-name">Slope</span><span class="arrow">→</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/SmashKarts" data-name="smash karts">
-      <img class="lesson-icon" src="./lessons/SmashKarts/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
-      <span class="lesson-name">Smash Karts</span><span class="arrow">→</span>
-    </a>
-
     <a class="lesson-link" href="./lessons/StairRace3D" data-name="stair race 3d">
       <img class="lesson-icon" src="./lessons/StairRace3D/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span class="lesson-name">Stair Race 3D</span><span class="arrow">→</span>
-    </a>
-
-    <a class="lesson-link" href="./lessons/TopGuns.io" data-name="top guns">
-      <img class="lesson-icon" src="./lessons/TopGuns.io/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
-      <span class="lesson-name">Top Guns.io</span><span class="arrow">→</span>
     </a>
 
   </div>
@@ -402,7 +318,6 @@
   const shownCount = document.getElementById('shown-count');
   const noResults = document.getElementById('no-results');
 
-  // Stagger animation on load
   links.forEach((link, i) => {
     link.style.animationDelay = `${0.05 + i * 0.03}s`;
   });
@@ -411,8 +326,7 @@
     const q = search.value.toLowerCase().trim();
     let visible = 0;
     links.forEach(link => {
-      const name = link.getAttribute('data-name');
-      const match = name.includes(q);
+      const match = link.getAttribute('data-name').includes(q);
       link.style.display = match ? 'flex' : 'none';
       if (match) visible++;
     });
