@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amplify Lessons</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -18,144 +18,151 @@
     }
 
     .wrap {
-      max-width: 640px;
+      max-width: 600px;
       margin: 0 auto;
     }
 
     header {
-      margin-bottom: 3rem;
-    }
-
-    .site-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: #555;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.5rem;
+      margin-bottom: 2.5rem;
     }
 
     h1 {
-      font-size: 28px;
-      font-weight: 500;
-      color: #e8e8e8;
+      font-size: 32px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    p.sub {
+      font-size: 16px;
+      color: #666;
+      margin-top: 0.4rem;
     }
 
     .lessons-list {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.6rem;
     }
 
     .lesson-link {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 1rem;
       background: #1c1c1f;
       border: 1px solid #2a2a2e;
-      border-radius: 10px;
-      padding: 1.1rem 1.25rem;
+      border-radius: 12px;
+      padding: 0.85rem 1.25rem;
       text-decoration: none;
-      color: inherit;
-      transition: border-color 0.15s, background 0.15s;
+      color: #e8e8e8;
+      font-size: 17px;
+      font-weight: 500;
+      transition: background 0.15s, border-color 0.15s;
     }
 
     .lesson-link:hover {
-      border-color: #444;
       background: #222226;
+      border-color: #3a3a3e;
+      color: #fff;
+    }
+
+    .lesson-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      object-fit: cover;
+      flex-shrink: 0;
+      display: block;
+    }
+
+    .icon-placeholder {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: #2a2a2e;
+      flex-shrink: 0;
     }
 
     .lesson-name {
-      font-size: 16px;
-      font-weight: 500;
-      color: #e8e8e8;
-    }
-
-    .lesson-path {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: #555;
-      margin-top: 2px;
+      flex: 1;
     }
 
     .arrow {
       color: #444;
-      font-size: 18px;
+      font-size: 20px;
       transition: color 0.15s, transform 0.15s;
+      flex-shrink: 0;
     }
 
     .lesson-link:hover .arrow {
-      color: #888;
+      color: #777;
       transform: translateX(3px);
-    }
-
-    footer {
-      margin-top: 3rem;
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: #333;
     }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <p class="site-label">joeyc1pro / amplify</p>
       <h1>Lessons</h1>
+      <p class="sub">Pick a lesson and play</p>
     </header>
 
     <div class="lessons-list">
 
       <a class="lesson-link" href="./lessons/drive-mad">
-        <div>
-          <p class="lesson-name">Drive Mad</p>
-          <p class="lesson-path">/lessons/drive-mad</p>
-        </div>
+        <img class="lesson-icon" src="./lessons/drive-mad/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">Drive Mad</span>
         <span class="arrow">→</span>
       </a>
 
       <a class="lesson-link" href="./lessons/1.8.8">
-        <div>
-          <p class="lesson-name">1.8.8</p>
-          <p class="lesson-path">/lessons/1.8.8</p>
-        </div>
+        <img class="lesson-icon" src="./lessons/1.8.8/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">1.8.8</span>
         <span class="arrow">→</span>
       </a>
 
       <a class="lesson-link" href="./lessons/draw-the-hill">
-        <div>
-          <p class="lesson-name">Draw the Hill</p>
-          <p class="lesson-path">/lessons/draw-the-hill</p>
-        </div>
+        <img class="lesson-icon" src="./lessons/draw-the-hill/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">Draw the Hill</span>
         <span class="arrow">→</span>
       </a>
 
       <a class="lesson-link" href="./lessons/rocket-league">
-        <div>
-          <p class="lesson-name">Rocket League</p>
-          <p class="lesson-path">/lessons/rocket-league</p>
-        </div>
+        <img class="lesson-icon" src="./lessons/rocket-league/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">Rocket League</span>
         <span class="arrow">→</span>
       </a>
 
       <a class="lesson-link" href="./lessons/basket-random">
-        <div>
-          <p class="lesson-name">Basket Random</p>
-          <p class="lesson-path">/lessons/basket-random</p>
-        </div>
+        <img class="lesson-icon" src="./lessons/basket-random/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">Basket Random</span>
         <span class="arrow">→</span>
       </a>
 
       <a class="lesson-link" href="./lessons/BackflipManiac">
-        <div>
-          <p class="lesson-name">Backflip Maniac</p>
-          <p class="lesson-path">/lessons/BackflipManiac</p>
-        </div>
+        <img class="lesson-icon" src="./lessons/BackflipManiac/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">Backflip Maniac</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="lesson-link" href="./lessons/AmongUsOnline">
+        <img class="lesson-icon" src="./lessons/AmongUsOnline/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">Among Us Online</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="lesson-link" href="./lessons/GunSpin">
+        <img class="lesson-icon" src="./lessons/GunSpin/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">Gun Spin</span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="lesson-link" href="./lessons/Aquapark.io">
+        <img class="lesson-icon" src="./lessons/Aquapark.io/icon.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+        <span class="lesson-name">Aquapark.io</span>
         <span class="arrow">→</span>
       </a>
 
     </div>
-
-    <footer>amplify-home-xyz</footer>
   </div>
 </body>
 </html>
