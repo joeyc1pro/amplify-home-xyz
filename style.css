@@ -1,33 +1,46 @@
-/* ========== BASE RESET ========== */
+/* =========================
+   RESET
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ========== GLOBAL CURSOR FIX (IMPORTANT) ========== */
+/* =========================
+   CURSOR LOCK (IMPORTANT FIX)
+   This is the "real fix" for your issue
+========================= */
+html, body {
+  cursor: none !important;
+}
+
+*,
+*:hover,
+*:active,
+*:focus,
+button,
+input,
+textarea,
+select,
+a {
+  cursor: none !important;
+}
+
+/* =========================
+   BASE
+========================= */
 body {
   font-family: 'DM Sans', sans-serif;
   background: #111113;
   color: #e8e8e8;
   min-height: 100vh;
   padding: 3rem 1.5rem;
-
-  cursor: none;
 }
 
-/* force NO native cursor anywhere */
-body,
-button,
-a,
-input,
-textarea,
-.lesson-link,
-.filter-btn {
-  cursor: none !important;
-}
-
-/* ========== LAYOUT ========== */
+/* =========================
+   LAYOUT
+========================= */
 .wrap {
   max-width: 700px;
   margin: 0 auto;
@@ -45,7 +58,9 @@ h1 {
   margin-top: 6px;
 }
 
-/* ========== STATS ========== */
+/* =========================
+   STATS
+========================= */
 .stats-bar {
   display: flex;
   gap: 12px;
@@ -71,7 +86,9 @@ h1 {
   color: #666;
 }
 
-/* ========== SEARCH + FILTERS ========== */
+/* =========================
+   CONTROLS
+========================= */
 .controls {
   display: flex;
   gap: 10px;
@@ -111,14 +128,15 @@ h1 {
   color: #111;
 }
 
-/* ========== LIST ========== */
+/* =========================
+   LIST
+========================= */
 #list {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-/* lesson card */
 .lesson-link {
   display: flex;
   align-items: center;
@@ -132,7 +150,7 @@ h1 {
   text-decoration: none;
   color: #e8e8e8;
 
-  transition: 0.15s;
+  transition: 0.15s ease;
 }
 
 .lesson-link:hover {
@@ -141,7 +159,9 @@ h1 {
   border-color: #444;
 }
 
-/* ========== ICONS ========== */
+/* =========================
+   ICONS
+========================= */
 .lesson-icon {
   width: 40px;
   height: 40px;
@@ -158,12 +178,16 @@ h1 {
   flex-shrink: 0;
 }
 
-/* ========== TEXT ========== */
+/* =========================
+   TEXT
+========================= */
 .lesson-link span:first-of-type {
   flex: 1;
 }
 
-/* ========== TAGS ========== */
+/* =========================
+   TAGS
+========================= */
 .tag {
   font-size: 11px;
   padding: 3px 8px;
@@ -172,7 +196,10 @@ h1 {
   color: #aaa;
 }
 
-/* ========== FAVORITES STAR (NO SHIFT FIX) ========== */
+/* =========================
+   FAVORITES STAR
+   (no layout shift fix included in JS)
+========================= */
 .fav {
   font-size: 18px;
   color: #555;
@@ -186,7 +213,9 @@ h1 {
   color: #fff;
 }
 
-/* ========== EMPTY STATE ========== */
+/* =========================
+   EMPTY STATE
+========================= */
 .empty {
   display: none;
   text-align: center;
@@ -194,7 +223,9 @@ h1 {
   color: #555;
 }
 
-/* ========== CUSTOM CURSOR ========== */
+/* =========================
+   CUSTOM CURSOR
+========================= */
 .custom-cursor {
   position: fixed;
   width: 12px;
@@ -207,7 +238,9 @@ h1 {
   mix-blend-mode: difference;
 }
 
-/* ========== MOBILE ========== */
+/* =========================
+   MOBILE
+========================= */
 @media (max-width: 600px) {
   .controls {
     flex-direction: column;
