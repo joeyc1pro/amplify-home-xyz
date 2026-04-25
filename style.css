@@ -1,53 +1,29 @@
-/* =========================
-   RESET
-========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* =========================
-   CURSOR LOCK (IMPORTANT FIX)
-   This is the "real fix" for your issue
-========================= */
-html, body {
-  cursor: none !important;
-}
-
-*,
-*:hover,
-*:active,
-*:focus,
-button,
-input,
-textarea,
-select,
-a {
-  cursor: none !important;
-}
-
-/* =========================
-   BASE
-========================= */
 body {
   font-family: 'DM Sans', sans-serif;
   background: #111113;
   color: #e8e8e8;
   min-height: 100vh;
-  padding: 3rem 1.5rem;
+  padding: 40px 20px;
+  cursor: none; /* IMPORTANT for custom cursor */
 }
 
-/* =========================
-   LAYOUT
-========================= */
+/* ================= WRAP ================= */
+
 .wrap {
-  max-width: 700px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
+/* ================= HEADER ================= */
+
 h1 {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 600;
   color: #fff;
 }
@@ -58,9 +34,8 @@ h1 {
   margin-top: 6px;
 }
 
-/* =========================
-   STATS
-========================= */
+/* ================= STATS ================= */
+
 .stats-bar {
   display: flex;
   gap: 12px;
@@ -71,14 +46,15 @@ h1 {
   flex: 1;
   background: #1c1c1f;
   border: 1px solid #2a2a2e;
-  border-radius: 12px;
-  text-align: center;
+  border-radius: 10px;
   padding: 10px;
+  text-align: center;
 }
 
 .stat-value {
   font-size: 20px;
   font-weight: 600;
+  color: #fff;
 }
 
 .stat-label {
@@ -86,21 +62,21 @@ h1 {
   color: #666;
 }
 
-/* =========================
-   CONTROLS
-========================= */
+/* ================= CONTROLS ================= */
+
 .controls {
   display: flex;
   gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
 }
 
 .search-input {
   flex: 1;
+  padding: 10px 14px;
   background: #1c1c1f;
   border: 1px solid #2a2a2e;
   border-radius: 10px;
-  padding: 10px 12px;
   color: #fff;
   outline: none;
 }
@@ -109,17 +85,20 @@ h1 {
   border-color: #444;
 }
 
+/* FILTER BUTTONS */
+
 .filter-btn {
-  background: #1c1c1f;
-  border: 1px solid #2a2a2e;
-  color: #aaa;
-  padding: 10px 12px;
+  padding: 10px 14px;
   border-radius: 10px;
+  border: 1px solid #2a2a2e;
+  background: #1c1c1f;
+  color: #aaa;
+  cursor: pointer;
   transition: 0.2s;
 }
 
 .filter-btn:hover {
-  background: #232327;
+  background: #222;
   color: #fff;
 }
 
@@ -128,14 +107,7 @@ h1 {
   color: #111;
 }
 
-/* =========================
-   LIST
-========================= */
-#list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+/* ================= LIST ================= */
 
 .lesson-link {
   display: flex;
@@ -144,109 +116,97 @@ h1 {
 
   background: #1c1c1f;
   border: 1px solid #2a2a2e;
-  padding: 10px 12px;
   border-radius: 12px;
+
+  padding: 10px 12px;
+  margin-bottom: 8px;
 
   text-decoration: none;
   color: #e8e8e8;
 
-  transition: 0.15s ease;
+  transition: 0.2s;
+  position: relative;
 }
 
 .lesson-link:hover {
-  background: #232327;
-  transform: translateY(-1px);
+  background: #222226;
   border-color: #444;
+  transform: translateY(-1px);
 }
 
-/* =========================
-   ICONS
-========================= */
+/* ================= ICONS ================= */
+
 .lesson-icon {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 8px;
   object-fit: cover;
-  flex-shrink: 0;
 }
 
 .icon-placeholder {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 8px;
   background: #2a2a2e;
-  flex-shrink: 0;
 }
 
-/* =========================
-   TEXT
-========================= */
-.lesson-link span:first-of-type {
+/* ================= TEXT ================= */
+
+.lesson-link span:nth-child(2) {
   flex: 1;
 }
 
-/* =========================
-   TAGS
-========================= */
+/* TAG */
+
 .tag {
   font-size: 11px;
-  padding: 3px 8px;
-  border-radius: 999px;
+  padding: 3px 6px;
+  border-radius: 6px;
   background: #2a2a2e;
   color: #aaa;
+  margin-left: auto;
+  margin-right: 10px;
 }
 
-/* =========================
-   FAVORITES STAR
-   (no layout shift fix included in JS)
-========================= */
+/* ================= FAVORITE STAR ================= */
+
 .fav {
   font-size: 18px;
-  color: #555;
-  width: 22px;
-  text-align: center;
+  color: #666;
+  cursor: pointer;
   user-select: none;
   transition: 0.2s;
 }
 
 .fav:hover {
   color: #fff;
+  transform: scale(1.2);
 }
 
-/* =========================
-   EMPTY STATE
-========================= */
-.empty {
-  display: none;
+/* ================= NO RESULTS ================= */
+
+.no-results {
   text-align: center;
-  margin-top: 40px;
   color: #555;
+  margin-top: 20px;
+  display: none;
 }
 
-/* =========================
-   CUSTOM CURSOR
-========================= */
+/* ================= CUSTOM CURSOR ================= */
+
 .custom-cursor {
   position: fixed;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: #fff;
   pointer-events: none;
+  z-index: 999999;
   transform: translate(-50%, -50%);
-  z-index: 9999;
-  mix-blend-mode: difference;
 }
 
-/* =========================
-   MOBILE
-========================= */
-@media (max-width: 600px) {
-  .controls {
-    flex-direction: column;
-  }
-
-  .stats-bar {
-    flex-direction: column;
-  }
+/* ================= LINKS / TEXTBOX FIX ================= */
+/* ensures cursor still hidden everywhere */
+a, button, input {
+  cursor: none;
 }
