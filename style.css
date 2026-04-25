@@ -95,13 +95,14 @@ h1 {
   border-color: #444;
 }
 
-/* ===== Game List ===== */
+/* ===== List ===== */
 #list {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 }
 
+/* ===== Lesson Cards ===== */
 .lesson-link {
   display: flex;
   align-items: center;
@@ -120,6 +121,7 @@ h1 {
   border-color: #3a3a3e;
 }
 
+/* icon */
 .lesson-icon,
 .icon-placeholder {
   width: 38px;
@@ -133,20 +135,25 @@ h1 {
   object-fit: cover;
 }
 
-.lesson-link span {
+/* name takes available space */
+.lesson-link span:first-of-type {
   flex: 1;
 }
 
+/* tags */
 .tag {
   font-size: 12px;
   color: #777;
   margin-right: 0.5rem;
 }
 
+/* FAVORITE STAR FIXED RIGHT SIDE */
 .fav {
+  margin-left: auto;
   cursor: pointer;
   color: #777;
   font-size: 18px;
+  flex-shrink: 0;
 }
 
 .fav:hover {
