@@ -1,0 +1,169 @@
+/* RESET */
+*,*::before,*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* FIX SCREEN SHIFT */
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #111113;
+  color: #e8e8e8;
+  min-height: 100vh;
+  padding: 3rem 1.5rem 4rem;
+  overflow-y: scroll;
+  cursor: none;
+}
+
+/* LAYOUT */
+.wrap {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.sub {
+  font-size: 14px;
+  color: #666;
+  margin-top: 0.3rem;
+}
+
+/* STATS */
+.stats-bar {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.stat {
+  flex: 1;
+  background: #1c1c1f;
+  border: 1px solid #2a2a2e;
+  padding: 0.6rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #666;
+}
+
+/* CONTROLS */
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.search-input,
+.filter-btn {
+  background: #1c1c1f;
+  border: 1px solid #2a2a2e;
+  color: white;
+  padding: 0.7rem 0.9rem;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.filter-btn {
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background: #2a2a2e;
+}
+
+/* LIST */
+.lesson-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  background: #1c1c1f;
+  border: 1px solid #2a2a2e;
+  border-radius: 12px;
+
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.5rem;
+
+  text-decoration: none;
+  color: white;
+
+  transition: 0.2s;
+}
+
+.lesson-link:hover {
+  border-color: #555;
+  transform: translateY(-1px);
+}
+
+/* ICONS */
+.lesson-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.icon-placeholder {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: #2a2a2e;
+}
+
+/* TAGS */
+.tag {
+  margin-left: auto;
+  font-size: 11px;
+  color: #888;
+}
+
+/* FAVORITE STAR */
+.fav {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+}
+
+/* EMPTY STATE */
+.empty {
+  display: none;
+  text-align: center;
+  padding: 3rem 0;
+  color: #666;
+}
+
+/* ===== CUSTOM CURSOR ===== */
+.custom-cursor {
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
