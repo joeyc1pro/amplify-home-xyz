@@ -4,281 +4,282 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Amplify Lessons</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'DM Sans',sans-serif;background:#111113;color:#e8e8e8;min-height:100vh;padding:3rem 1.5rem 4rem}
-    .wrap{max-width:650px;margin:0 auto}
 
-    h1{font-size:32px;font-weight:600}
-    p.sub{font-size:14px;color:#666;margin-top:.3rem}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-    .stats-bar{display:flex;gap:1rem;margin:1.5rem 0}
-    .stat{flex:1;background:#1c1c1f;border:1px solid #2a2a2e;padding:.6rem;border-radius:10px;text-align:center}
-    .stat-value{font-size:20px;font-weight:600}
-    .stat-label{font-size:12px;color:#666}
-
-    .controls{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
-
-    .search-input,.filter-btn{
-      background:#1c1c1f;border:1px solid #2a2a2e;color:#fff;
-      padding:.7rem .9rem;border-radius:10px;font-family:inherit;font-size:14px
-    }
-
-    .filter-btn{cursor:pointer;transition:.2s}
-    .filter-btn:hover{border-color:#555}
-    .filter-btn.active{background:#2a2a2e}
-
-    .lesson-link{
-      display:flex;align-items:center;gap:1rem;
-      background:#1c1c1f;border:1px solid #2a2a2e;
-      border-radius:12px;padding:.8rem 1rem;margin-bottom:.5rem;
-      text-decoration:none;color:#fff;transition:.2s
-    }
-
-    .lesson-link:hover{border-color:#555;transform:translateY(-1px)}
-
-    .lesson-icon{width:38px;height:38px;border-radius:8px;object-fit:cover}
-
-    .icon-placeholder{width:38px;height:38px;border-radius:8px;background:#2a2a2e;flex-shrink:0}
-
-    .tag{font-size:11px;color:#888;margin-left:auto}
-    .fav{cursor:pointer;font-size:18px;margin-left:.5rem}
-
-    .empty{
-      display:none;
-      text-align:center;
-      color:#666;
-      padding:3rem 0;
-      font-size:15px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+
+<div class="custom-cursor"></div>
+
 <div class="wrap">
 
   <h1>Lessons</h1>
-  <p class="sub">Search by name or tag (partial supported)</p>
+  <p class="sub">Search by name or tag</p>
 
   <div class="stats-bar">
-    <div class="stat"><div class="stat-value" id="total">26</div><div class="stat-label">Total</div></div>
-    <div class="stat"><div class="stat-value" id="visible">26</div><div class="stat-label">Showing</div></div>
+    <div class="stat">
+      <div class="stat-value">26</div>
+      <div class="stat-label">Total</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="shown">26</div>
+      <div class="stat-label">Showing</div>
+    </div>
   </div>
 
   <div class="controls">
-    <input class="search-input" id="search" placeholder="Search games or tags..." />
+    <input id="search" class="search-input" placeholder="Search games or tags..." />
+
     <button class="filter-btn active" data-filter="all">All</button>
     <button class="filter-btn" data-filter="fav">Favorites</button>
   </div>
 
   <div id="list">
 
-    <a class="lesson-link" href="./lessons/g1" data-name="1.8.8" data-tags="survival">
-      <img class="lesson-icon" src="./lessons/1.8.8/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="1.8.8" data-tags="survival" href="./lessons/g1">
+      <img class="lesson-icon" src="./lessons/1.8.8/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>1.8.8</span><span class="tag">Survival</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g2" data-name="among us online" data-tags="multiplayer">
-      <img class="lesson-icon" src="./lessons/AmongUsOnline/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="among us online" data-tags="multiplayer social" href="./lessons/g2">
+      <img class="lesson-icon" src="./lessons/AmongUsOnline/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Among Us Online</span><span class="tag">Multiplayer</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g3" data-name="aquapark io" data-tags="racing">
-      <img class="lesson-icon" src="./lessons/Aquapark.io/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="aquapark io" data-tags="racing physics" href="./lessons/g3">
+      <img class="lesson-icon" src="./lessons/Aquapark.io/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Aquapark.io</span><span class="tag">Racing</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g4" data-name="backflip maniac" data-tags="physics">
-      <img class="lesson-icon" src="./lessons/BackflipManiac/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="backflip maniac" data-tags="physics stunt" href="./lessons/g4">
+      <img class="lesson-icon" src="./lessons/BackflipManiac/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Backflip Maniac</span><span class="tag">Physics</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g5" data-name="baldis basics" data-tags="horror">
-      <img class="lesson-icon" src="./lessons/Baldi'sBasics/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="baldis basics" data-tags="horror survival" href="./lessons/g5">
+      <img class="lesson-icon" src="./lessons/Baldi'sBasics/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Baldi's Basics</span><span class="tag">Horror</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g6" data-name="basket random" data-tags="sports physics">
-      <img class="lesson-icon" src="./lessons/basket-random/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="basket random" data-tags="sports physics" href="./lessons/g6">
+      <img class="lesson-icon" src="./lessons/basket-random/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Basket Random</span><span class="tag">Sports</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g7" data-name="bitlife" data-tags="survival">
-      <img class="lesson-icon" src="./lessons/Bitlife/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
-      <span>BitLife</span><span class="tag">Survival</span><span class="fav">☆</span>
+    <a class="lesson-link" data-name="bitlife" data-tags="life simulation survival" href="./lessons/g7">
+      <img class="lesson-icon" src="./lessons/Bitlife/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+      <span>BitLife</span><span class="tag">Simulation</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g8" data-name="block blast" data-tags="puzzle">
-      <img class="lesson-icon" src="./lessons/BlockBlast/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="block blast" data-tags="puzzle match" href="./lessons/g8">
+      <img class="lesson-icon" src="./lessons/BlockBlast/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Block Blast</span><span class="tag">Puzzle</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g9" data-name="bloxorz" data-tags="puzzle">
-      <img class="lesson-icon" src="./lessons/Bloxorz/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="bloxorz" data-tags="puzzle logic" href="./lessons/g9">
+      <img class="lesson-icon" src="./lessons/Bloxorz/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Bloxorz</span><span class="tag">Puzzle</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g10" data-name="bottle flip 3d" data-tags="physics">
-      <img class="lesson-icon" src="./lessons/BottleFlip3D/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
-      <span>Bottle Flip 3D</span><span class="tag">Physics</span><span class="fav">☆</span>
+    <a class="lesson-link" data-name="bottle flip 3d" data-tags="physics skill" href="./lessons/g10">
+      <img class="lesson-icon" src="./lessons/BottleFlip3D/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+      <span>Bottle Flip 3D</span><span class="tag">Skill</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g11" data-name="drive mad" data-tags="racing physics">
-      <img class="lesson-icon" src="./lessons/drive-mad/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="drive mad" data-tags="driving physics rage" href="./lessons/g11">
+      <img class="lesson-icon" src="./lessons/drive-mad/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Drive Mad</span><span class="tag">Racing</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g12" data-name="draw the hill" data-tags="puzzle physics">
-      <img class="lesson-icon" src="./lessons/draw-the-hill/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="draw the hill" data-tags="puzzle physics draw" href="./lessons/g12">
+      <img class="lesson-icon" src="./lessons/draw-the-hill/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Draw the Hill</span><span class="tag">Puzzle</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g13" data-name="gun spin" data-tags="action shooter">
-      <img class="lesson-icon" src="./lessons/GunSpin/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="gun spin" data-tags="action shooter" href="./lessons/g13">
+      <img class="lesson-icon" src="./lessons/GunSpin/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Gun Spin</span><span class="tag">Action</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g14" data-name="just fall" data-tags="multiplayer action">
-      <img class="lesson-icon" src="./lessons/JustFall.lol/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
-      <span>JustFall.lol</span><span class="tag">Action</span><span class="fav">☆</span>
+    <a class="lesson-link" data-name="just fall" data-tags="multiplayer party" href="./lessons/g14">
+      <img class="lesson-icon" src="./lessons/JustFall.lol/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+      <span>JustFall.lol</span><span class="tag">Multiplayer</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g15" data-name="n gon" data-tags="action physics">
-      <img class="lesson-icon" src="./lessons/N-GON/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="n gon" data-tags="action physics" href="./lessons/g15">
+      <img class="lesson-icon" src="./lessons/N-GON/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>N-GON</span><span class="tag">Action</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g16" data-name="only up" data-tags="runner physics">
-      <img class="lesson-icon" src="./lessons/OnlyUp!/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="only up" data-tags="platformer climbing" href="./lessons/g16">
+      <img class="lesson-icon" src="./lessons/OnlyUp!/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Only Up!</span><span class="tag">Runner</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g17" data-name="raft wars" data-tags="shooter">
-      <img class="lesson-icon" src="./lessons/RaftWars/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="raft wars" data-tags="shooter strategy" href="./lessons/g17">
+      <img class="lesson-icon" src="./lessons/RaftWars/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Raft Wars</span><span class="tag">Shooter</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g18" data-name="raft wars 2" data-tags="shooter">
-      <img class="lesson-icon" src="./lessons/RaftWars2/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="raft wars 2" data-tags="shooter strategy" href="./lessons/g18">
+      <img class="lesson-icon" src="./lessons/RaftWars2/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Raft Wars 2</span><span class="tag">Shooter</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g19" data-name="ragdoll hit" data-tags="action physics">
-      <img class="lesson-icon" src="./lessons/RagdollHit/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
-      <span>Ragdoll Hit</span><span class="tag">Action</span><span class="fav">☆</span>
+    <a class="lesson-link" data-name="ragdoll hit" data-tags="fighting physics" href="./lessons/g19">
+      <img class="lesson-icon" src="./lessons/RagdollHit/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+      <span>Ragdoll Hit</span><span class="tag">Fighting</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g20" data-name="shell shockers" data-tags="shooter multiplayer">
-      <img class="lesson-icon" src="./lessons/ShellShockers/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="shell shockers" data-tags="shooter multiplayer fps" href="./lessons/g20">
+      <img class="lesson-icon" src="./lessons/ShellShockers/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Shell Shockers</span><span class="tag">Shooter</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g21" data-name="slope" data-tags="runner physics">
-      <img class="lesson-icon" src="./lessons/Slope/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="slope" data-tags="runner speed physics" href="./lessons/g21">
+      <img class="lesson-icon" src="./lessons/Slope/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Slope</span><span class="tag">Runner</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g22" data-name="slow roads" data-tags="racing">
-      <img class="lesson-icon" src="./lessons/SlowRoads.io/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
-      <span>Slow Roads.io</span><span class="tag">Racing</span><span class="fav">☆</span>
+    <a class="lesson-link" data-name="slow roads" data-tags="driving chill" href="./lessons/g22">
+      <img class="lesson-icon" src="./lessons/SlowRoads.io/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
+      <span>Slow Roads.io</span><span class="tag">Driving</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g23" data-name="snow rider" data-tags="racing">
-      <img class="lesson-icon" src="./lessons/SnowRider/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="snow rider" data-tags="snow racing" href="./lessons/g23">
+      <img class="lesson-icon" src="./lessons/SnowRider/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Snow Rider</span><span class="tag">Racing</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g24" data-name="snowball io" data-tags="action multiplayer">
-      <img class="lesson-icon" src="./lessons/SnowBall.io/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="snowball io" data-tags="multiplayer action" href="./lessons/g24">
+      <img class="lesson-icon" src="./lessons/SnowBall.io/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Snowball.io</span><span class="tag">Action</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g25" data-name="stair race 3d" data-tags="racing">
-      <img class="lesson-icon" src="./lessons/StairRace3D/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="stair race 3d" data-tags="racing obstacle" href="./lessons/g25">
+      <img class="lesson-icon" src="./lessons/StairRace3D/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Stair Race 3D</span><span class="tag">Racing</span><span class="fav">☆</span>
     </a>
 
-    <a class="lesson-link" href="./lessons/g26" data-name="subway surfers" data-tags="runner">
-      <img class="lesson-icon" src="./lessons/SubwaySurfers/icon.png" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))" />
+    <a class="lesson-link" data-name="subway surfers" data-tags="runner endless" href="./lessons/g26">
+      <img class="lesson-icon" src="./lessons/SubwaySurfers/icon.png"
+        onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'icon-placeholder'}))">
       <span>Subway Surfers</span><span class="tag">Runner</span><span class="fav">☆</span>
     </a>
 
   </div>
 
   <div id="empty" class="empty">No favorites</div>
+
 </div>
 
 <script>
-const search=document.getElementById('search');
-const links=Array.from(document.querySelectorAll('.lesson-link'));
-const visible=document.getElementById('visible');
-const empty=document.getElementById('empty');
-let mode='all';
+const search = document.getElementById("search");
+const links = Array.from(document.querySelectorAll(".lesson-link"));
+const shown = document.getElementById("shown");
+const empty = document.getElementById("empty");
 
-function favs(){return JSON.parse(localStorage.getItem('f')||'[]')}
-function setFavs(v){localStorage.setItem('f',JSON.stringify(v))}
+let mode = "all";
 
-function toggleFav(n){let f=favs();f.includes(n)?f=f.filter(x=>x!==n):f.push(n);setFavs(f);render()}
+function getFavs(){
+  return JSON.parse(localStorage.getItem("favs") || "[]");
+}
+function setFavs(v){
+  localStorage.setItem("favs", JSON.stringify(v));
+}
 
-function applyOrdering(container,favList){
-  const items=[...links].filter(l=>l.style.display!=='none');
-  items.sort((a,b)=>favList.includes(b.dataset.name)-favList.includes(a.dataset.name));
-  items.forEach(i=>container.appendChild(i));
+function toggleFav(name){
+  let f = getFavs();
+  f.includes(name) ? f = f.filter(x => x !== name) : f.push(name);
+  setFavs(f);
+  render();
 }
 
 function render(){
-  let q=search.value.toLowerCase().trim();
-  let f=favs();
-  let c=0;
+  const q = search.value.toLowerCase().trim();
+  const favs = getFavs();
+  let count = 0;
 
-  const container=document.getElementById('list');
+  links.forEach(link => {
+    const name = link.dataset.name.toLowerCase();
+    const tags = link.dataset.tags.toLowerCase();
 
-  links.forEach(l=>{
-    let name=l.dataset.name.toLowerCase();
-    let tags=(l.dataset.tags||"").toLowerCase();
+    const match = name.includes(q) || tags.includes(q);
 
-    let tagMatch=tags.split(' ').some(t=>t.includes(q));
-    let nameMatch=name.includes(q);
+    let show = true;
+    if (mode === "fav") show = favs.includes(link.dataset.name);
 
-    let match=q===''||nameMatch||tagMatch;
+    const visible = match && show;
 
-    let show=true;
-    if(mode==='fav')show=f.includes(l.dataset.name);
+    link.style.display = visible ? "flex" : "none";
 
-    l.style.display=(match&&show)?'flex':'none';
+    link.querySelector(".fav").textContent =
+      favs.includes(link.dataset.name) ? "★" : "☆";
 
-    l.querySelector('.fav').textContent=f.includes(l.dataset.name)?'★':'☆';
-
-    if(match&&show)c++;
+    if (visible) count++;
   });
 
-  if(mode==='all')applyOrdering(container,favs());
-
-  empty.style.display=(mode==='fav' && c===0)?'block':'none';
-
-  visible.textContent=c;
+  shown.textContent = count;
+  empty.style.display = (mode === "fav" && count === 0) ? "block" : "none";
 }
 
-search.addEventListener('input',render);
+search.addEventListener("input", render);
 
-links.forEach(l=>{
-  l.querySelector('.fav').addEventListener('click',e=>{
+links.forEach(link => {
+  link.querySelector(".fav").addEventListener("click", e => {
     e.preventDefault();
-    toggleFav(l.dataset.name);
+    toggleFav(link.dataset.name);
   });
 });
 
-document.querySelectorAll('.filter-btn').forEach(b=>{
-  b.addEventListener('click',()=>{
-    document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    mode=b.dataset.filter;
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    mode = btn.dataset.filter;
     render();
   });
 });
 
 render();
+
+/* CUSTOM CURSOR */
+const cursor = document.querySelector(".custom-cursor");
+
+document.addEventListener("mousemove", e => {
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+});
 </script>
+
 </body>
 </html>
