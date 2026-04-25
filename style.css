@@ -1,17 +1,30 @@
-/* ========== BASE ========== */
+/* ========== BASE RESET ========== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* ========== GLOBAL CURSOR FIX (IMPORTANT) ========== */
 body {
   font-family: 'DM Sans', sans-serif;
   background: #111113;
   color: #e8e8e8;
   min-height: 100vh;
   padding: 3rem 1.5rem;
-  cursor: none; /* custom cursor ON */
+
+  cursor: none;
+}
+
+/* force NO native cursor anywhere */
+body,
+button,
+a,
+input,
+textarea,
+.lesson-link,
+.filter-btn {
+  cursor: none !important;
 }
 
 /* ========== LAYOUT ========== */
@@ -85,12 +98,11 @@ h1 {
   color: #aaa;
   padding: 10px 12px;
   border-radius: 10px;
-  cursor: pointer;
   transition: 0.2s;
 }
 
 .filter-btn:hover {
-  background: #222;
+  background: #232327;
   color: #fff;
 }
 
@@ -99,23 +111,27 @@ h1 {
   color: #111;
 }
 
-/* ========== LESSON LIST ========== */
+/* ========== LIST ========== */
 #list {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
+/* lesson card */
 .lesson-link {
   display: flex;
   align-items: center;
   gap: 12px;
+
   background: #1c1c1f;
   border: 1px solid #2a2a2e;
   padding: 10px 12px;
   border-radius: 12px;
+
   text-decoration: none;
   color: #e8e8e8;
+
   transition: 0.15s;
 }
 
@@ -156,15 +172,14 @@ h1 {
   color: #aaa;
 }
 
-/* ========== FAVORITE STAR ========== */
+/* ========== FAVORITES STAR (NO SHIFT FIX) ========== */
 .fav {
   font-size: 18px;
   color: #555;
-  cursor: pointer;
+  width: 22px;
+  text-align: center;
   user-select: none;
   transition: 0.2s;
-  width: 20px;          /* prevents layout shift */
-  text-align: center;  /* fixes movement issue */
 }
 
 .fav:hover {
