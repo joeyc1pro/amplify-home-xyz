@@ -1,31 +1,28 @@
-* {
+/* ===== Base ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   background: #111113;
   color: #e8e8e8;
   min-height: 100vh;
-  padding: 40px 20px;
-
-  /* restored normal cursor */
-  cursor: default;
+  padding: 3rem 1.5rem 4rem;
 }
 
-/* ================= WRAP ================= */
-
+/* ===== Layout ===== */
 .wrap {
-  max-width: 720px;
+  max-width: 750px;
   margin: 0 auto;
 }
 
-/* ================= HEADER ================= */
-
 h1 {
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 600;
   color: #fff;
 }
@@ -33,15 +30,14 @@ h1 {
 .sub {
   font-size: 14px;
   color: #666;
-  margin-top: 6px;
+  margin-top: 0.4rem;
 }
 
-/* ================= STATS ================= */
-
+/* ===== Stats ===== */
 .stats-bar {
   display: flex;
-  gap: 12px;
-  margin: 20px 0;
+  gap: 1rem;
+  margin: 1.5rem 0;
 }
 
 .stat {
@@ -49,7 +45,7 @@ h1 {
   background: #1c1c1f;
   border: 1px solid #2a2a2e;
   border-radius: 10px;
-  padding: 10px;
+  padding: 0.8rem;
   text-align: center;
 }
 
@@ -64,21 +60,19 @@ h1 {
   color: #666;
 }
 
-/* ================= CONTROLS ================= */
-
+/* ===== Controls ===== */
 .controls {
   display: flex;
-  gap: 10px;
-  margin-bottom: 14px;
-  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .search-input {
   flex: 1;
-  padding: 10px 14px;
-  background: #1c1c1f;
-  border: 1px solid #2a2a2e;
+  padding: 0.8rem 1rem;
   border-radius: 10px;
+  border: 1px solid #2a2a2e;
+  background: #1c1c1f;
   color: #fff;
   outline: none;
 }
@@ -87,122 +81,116 @@ h1 {
   border-color: #444;
 }
 
-/* ================= FILTER BUTTONS ================= */
-
 .filter-btn {
-  padding: 10px 14px;
-  border-radius: 10px;
-  border: 1px solid #2a2a2e;
   background: #1c1c1f;
-  color: #aaa;
+  border: 1px solid #2a2a2e;
+  color: #888;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.2s;
-}
-
-.filter-btn:hover {
-  background: #222;
-  color: #fff;
 }
 
 .filter-btn.active {
-  background: #fff;
-  color: #111;
+  color: #fff;
+  border-color: #444;
 }
 
-/* ================= LESSON LIST ================= */
+/* ===== Game List ===== */
+#list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
 
 .lesson-link {
   display: flex;
   align-items: center;
-  gap: 12px;
-
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
   background: #1c1c1f;
   border: 1px solid #2a2a2e;
   border-radius: 12px;
-
-  padding: 10px 12px;
-  margin-bottom: 8px;
-
   text-decoration: none;
   color: #e8e8e8;
-
-  transition: 0.2s;
+  transition: 0.15s;
 }
 
 .lesson-link:hover {
   background: #222226;
-  border-color: #444;
-  transform: translateY(-1px);
+  border-color: #3a3a3e;
 }
 
-/* ================= ICONS ================= */
+.lesson-icon,
+.icon-placeholder {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: #2a2a2e;
+  flex-shrink: 0;
+}
 
 .lesson-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 8px;
   object-fit: cover;
 }
 
-.icon-placeholder {
-  width: 42px;
-  height: 42px;
-  border-radius: 8px;
-  background: #2a2a2e;
-}
-
-/* ================= TEXT ================= */
-
-.lesson-link span:nth-child(2) {
+.lesson-link span {
   flex: 1;
 }
 
-/* ================= TAG ================= */
-
 .tag {
-  font-size: 11px;
-  padding: 3px 6px;
-  border-radius: 6px;
-  background: #2a2a2e;
-  color: #aaa;
-  margin-left: auto;
-  margin-right: 10px;
+  font-size: 12px;
+  color: #777;
+  margin-right: 0.5rem;
 }
 
-/* ================= FAVORITES STAR ================= */
-
 .fav {
-  font-size: 18px;
-  color: #666;
   cursor: pointer;
-  user-select: none;
-  transition: 0.2s;
+  color: #777;
+  font-size: 18px;
 }
 
 .fav:hover {
   color: #fff;
-  transform: scale(1.2);
 }
 
-/* ================= NO RESULTS ================= */
-
-.no-results {
+/* ===== Request Box ===== */
+.request-box {
+  margin-top: 3rem;
+  background: #1c1c1f;
+  border: 1px solid #2a2a2e;
+  border-radius: 12px;
+  padding: 1.5rem;
   text-align: center;
-  color: #555;
-  margin-top: 20px;
-  display: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* ================= SAFE DEFAULT CURSOR BEHAVIOR ================= */
-
-a {
-  cursor: pointer;
+.request-box h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.4rem;
 }
 
-button {
-  cursor: pointer;
+.request-box p {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 1rem;
+  max-width: 400px;
 }
 
-input {
-  cursor: text;
+.request-btn {
+  background: #fff;
+  color: #111113;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.request-btn:hover {
+  background: #ddd;
 }
