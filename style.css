@@ -10,7 +10,9 @@ body {
   color: #e8e8e8;
   min-height: 100vh;
   padding: 40px 20px;
-  cursor: none; /* IMPORTANT for custom cursor */
+
+  /* restored normal cursor */
+  cursor: default;
 }
 
 /* ================= WRAP ================= */
@@ -85,7 +87,7 @@ h1 {
   border-color: #444;
 }
 
-/* FILTER BUTTONS */
+/* ================= FILTER BUTTONS ================= */
 
 .filter-btn {
   padding: 10px 14px;
@@ -107,7 +109,7 @@ h1 {
   color: #111;
 }
 
-/* ================= LIST ================= */
+/* ================= LESSON LIST ================= */
 
 .lesson-link {
   display: flex;
@@ -125,7 +127,6 @@ h1 {
   color: #e8e8e8;
 
   transition: 0.2s;
-  position: relative;
 }
 
 .lesson-link:hover {
@@ -156,7 +157,7 @@ h1 {
   flex: 1;
 }
 
-/* TAG */
+/* ================= TAG ================= */
 
 .tag {
   font-size: 11px;
@@ -168,7 +169,7 @@ h1 {
   margin-right: 10px;
 }
 
-/* ================= FAVORITE STAR ================= */
+/* ================= FAVORITES STAR ================= */
 
 .fav {
   font-size: 18px;
@@ -192,21 +193,16 @@ h1 {
   display: none;
 }
 
-/* ================= CUSTOM CURSOR ================= */
+/* ================= SAFE DEFAULT CURSOR BEHAVIOR ================= */
 
-.custom-cursor {
-  position: fixed;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #fff;
-  pointer-events: none;
-  z-index: 999999;
-  transform: translate(-50%, -50%);
+a {
+  cursor: pointer;
 }
 
-/* ================= LINKS / TEXTBOX FIX ================= */
-/* ensures cursor still hidden everywhere */
-a, button, input {
-  cursor: none;
+button {
+  cursor: pointer;
+}
+
+input {
+  cursor: text;
 }
