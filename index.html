@@ -315,10 +315,101 @@
 <div class="request-box">
   <h2>Don't see your lesson?</h2>
   <p>Request one and we'll try to add it.</p>
-  <a class="request-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfCt28OvhRHKWW-9WQraqTq5gkupF5agRTWlM_FKZxYIfXxLQ/viewform?usp=header" target="_blank" rel="noopener">
+  <a class="request-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSfCt28OvhRHKWW-9WQraqTq5gkupF5agRTWlM_FKZxYIfXxLQ/viewform?usp=header" target="_blank">
     Request a Lesson
   </a>
 </div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const search = document.getElementById("search");
+  const shown = document.getElementById("shown");
+  const links = document.querySelectorAll(".lesson-link");
+  const buttons = document.querySelectorAll(".filter-btn");
+
+  let mode = "all";
+
+  function getFavs() {
+    return JSON.parse(localStorage.getItem("favs") || "[]");
+  }
+
+  function setFavs(arr) {
+    localStorage.setItem("favs", JSON.stringify(arr));
+  }
+
+  function render() {
+    const q = search.value.toLowerCase().trim();
+    const favs = getFavs();
+    let count = 0;
+
+    links.forEach(function(link) {
+      const rawName = link.getAttribute("data-name") || "";
+      const name = rawName.toLowerCase();
+
+      const rawTags = link.getAttribute("data-tags") || "";
+      const tags = rawTags.toLowerCase();
+
+      let visible = name.includes(q) || tags.includes(q);
+
+      if (mode === "fav" && !favs.includes(rawName)) {
+        visible = false;
+      }
+
+      link.style.display = visible ? "flex" : "none";
+
+      const star = link.querySelector(".fav");
+      if (star) {
+        star.textContent = favs.includes(rawName) ? "★" : "☆";
+      }
+
+      if (visible) count++;
+    });
+
+    shown.textContent = count;
+  }
+
+  search.addEventListener("input", render);
+
+  buttons.forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      buttons.forEach(function(b) {
+        b.classList.remove("active");
+      });
+
+      btn.classList.add("active");
+      mode = btn.getAttribute("data-filter");
+      render();
+    });
+  });
+
+  document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("fav")) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const card = e.target.closest(".lesson-link");
+      const name = card.getAttribute("data-name");
+
+      let favs = getFavs();
+
+      if (favs.includes(name)) {
+        favs = favs.filter(function(x) {
+          return x !== name;
+        });
+      } else {
+        favs.push(name);
+      }
+
+      setFavs(favs);
+      render();
+    }
+  });
+
+  render();
+});
+</script>
 
 </body>
 </html>
