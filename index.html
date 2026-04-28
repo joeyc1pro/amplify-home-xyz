@@ -11,6 +11,50 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="./style.css">
+
+<style>
+/* ===== FULL SCREEN GAME VIEW FIX ===== */
+
+#game-view {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #0f0f12;
+  z-index: 9999;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+}
+
+#game-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  flex: 1;
+  display: block;
+}
+
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #aaa;
+  font-size: 16px;
+  z-index: 10000;
+}
+
+#back-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10000;
+}
+</style>
+
 </head>
 
 <body>
@@ -40,31 +84,27 @@
 
 <!-- ================= HOME VIEW ================= -->
 <div id="home-view">
+  <div id="list"></div>
 
-<div id="list"></div>
-
-<div class="request-box">
-  <h2>Don't see your lesson?</h2>
-  <p>Request one and we'll try to add it.</p>
-  <a class="request-btn"
-     href="https://docs.google.com/forms/d/e/1FAIpQLSfCt28OvhRHKWW-9WQraqTq5gkupF5agRTWlM_FKZxYIfXxLQ/viewform?usp=header"
-     target="_blank">
-     Request a Lesson
-  </a>
-</div>
-
+  <div class="request-box">
+    <h2>Don't see your lesson?</h2>
+    <p>Request one and we'll try to add it.</p>
+    <a class="request-btn"
+       href="https://docs.google.com/forms/d/e/1FAIpQLSfCt28OvhRHKWW-9WQraqTq5gkupF5agRTWlM_FKZxYIfXxLQ/viewform?usp=header"
+       target="_blank">
+       Request a Lesson
+    </a>
+  </div>
 </div>
 
 <!-- ================= GAME VIEW ================= -->
-<div id="game-view" style="display:none;">
+<div id="game-view">
 
 <button id="back-btn" class="filter-btn">← Back</button>
 
 <div id="loader" style="display:none;">Loading...</div>
 
 <iframe id="game-frame"></iframe>
-
-</div>
 
 </div>
 
@@ -150,7 +190,7 @@ const backBtn = document.getElementById("back-btn");
 
 let mode = "all";
 
-/* ================= RENDER ================= */
+/* render games */
 function renderGames() {
   list.innerHTML = GAMES.map(g => `
     <a class="lesson-link"
@@ -169,7 +209,7 @@ function renderGames() {
   `).join("");
 }
 
-/* ================= FAVORITES ================= */
+/* favorites */
 function getFavs() {
   return JSON.parse(localStorage.getItem("favs") || "[]");
 }
@@ -177,7 +217,7 @@ function setFavs(a) {
   localStorage.setItem("favs", JSON.stringify(a));
 }
 
-/* ================= FILTER ================= */
+/* render filter/search */
 function render() {
   const q = search.value.toLowerCase().trim();
   const favs = getFavs();
@@ -203,7 +243,7 @@ function render() {
   shown.textContent = count;
 }
 
-/* ================= OPEN GAME ================= */
+/* click handling */
 document.addEventListener("click", e => {
 
   const fav = e.target.closest(".fav");
@@ -227,7 +267,7 @@ document.addEventListener("click", e => {
   const url = card.dataset.url;
 
   homeView.style.display = "none";
-  gameView.style.display = "block";
+  gameView.style.display = "flex";
 
   loader.style.display = "block";
   iframe.style.display = "none";
@@ -235,23 +275,23 @@ document.addEventListener("click", e => {
   iframe.src = url;
 });
 
-/* ================= IFRAME LOAD ================= */
+/* iframe loaded */
 iframe.addEventListener("load", () => {
   loader.style.display = "none";
   iframe.style.display = "block";
 });
 
-/* ================= BACK ================= */
+/* back */
 backBtn.addEventListener("click", () => {
   iframe.src = "";
   gameView.style.display = "none";
   homeView.style.display = "block";
 });
 
-/* ================= SEARCH ================= */
+/* search */
 search.addEventListener("input", render);
 
-/* ================= INIT ================= */
+/* init */
 renderGames();
 render();
 
