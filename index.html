@@ -60,28 +60,23 @@
 
 <div class="stats-bar">
   <div class="stat">
-    <div class="stat-value">63</div>
+    <div class="stat-value">64</div>
     <div class="stat-label">Total</div>
   </div>
 
   <div class="stat">
-    <div class="stat-value" id="shown">63</div>
+    <div class="stat-value" id="shown">64</div>
     <div class="stat-label">Showing</div>
   </div>
 </div>
 
-<!-- ================= CONTROLS ================= -->
 <div class="controls">
   <input id="search" class="search-input" placeholder="Search lessons or tags...">
   <button class="filter-btn active">All</button>
-
-  <!-- ABOUT:BLANK BUTTON MOVED HERE -->
-  <button id="blank-btn" class="filter-btn">Open in Blank</button>
 </div>
 
 <!-- ================= HOME VIEW ================= -->
 <div id="home-view">
-
   <div id="list"></div>
 
   <div class="request-box">
@@ -93,7 +88,6 @@
        Request a Lesson
     </a>
   </div>
-
 </div>
 
 <!-- ================= GAME VIEW ================= -->
@@ -181,7 +175,9 @@ const GAMES = [
   { id:"g60", name:"We Become What We Behold", tags:"simulation narrative social" },
   { id:"g61", name:"Astra Client", tags:"minecraft utility client" },
   { id:"g62", name:"Crazy Cattle 3D", tags:"racing chaos physics" },
-  { id:"g63", name:"Crazy Chicken 3D", tags:"racing chaos physics" }
+  { id:"g63", name:"Crazy Chicken 3D", tags:"racing chaos physics" },
+
+  { id:"g64", name:"Granny", tags:"horror survival stealth" }
 ];
 </script>
 
@@ -199,7 +195,6 @@ const iframe = document.getElementById("game-frame");
 const loader = document.getElementById("loader");
 
 const backBtn = document.getElementById("back-btn");
-const blankBtn = document.getElementById("blank-btn");
 
 function renderGames() {
   list.innerHTML = GAMES.map(g => `
@@ -259,29 +254,6 @@ backBtn.addEventListener("click", () => {
   iframe.src = "";
   gameView.style.display = "none";
   homeView.style.display = "block";
-});
-
-/* ABOUT:BLANK (HOME PAGE) */
-blankBtn.addEventListener("click", () => {
-  const win = window.open("about:blank", "_blank");
-
-  win.document.write(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Lessons</title>
-      <style>
-        html,body { margin:0; height:100%; background:#0f0f12; }
-        iframe { width:100%; height:100%; border:none; }
-      </style>
-    </head>
-    <body>
-      <iframe src="https://joeyc1pro.github.io/amplify-home-xyz/"></iframe>
-    </body>
-    </html>
-  `);
-
-  win.document.close();
 });
 
 search.addEventListener("input", render);
