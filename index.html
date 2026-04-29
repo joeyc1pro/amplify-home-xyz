@@ -35,7 +35,6 @@
 <div class="controls">
   <input id="search" class="search-input" placeholder="Search lessons or tags...">
   <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="fav">Favorites</button>
 </div>
 
 <!-- ================= HOME VIEW ================= -->
@@ -143,7 +142,7 @@ const GAMES = [
 ];
 </script>
 
-<!-- ================= SYSTEM SCRIPT ================= -->
+<!-- ================= SYSTEM ================= -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -158,9 +157,6 @@ const loader = document.getElementById("loader");
 const backBtn = document.getElementById("back-btn");
 const blankBtn = document.getElementById("blank-btn");
 
-let mode = "all";
-
-/* render */
 function renderGames() {
   list.innerHTML = GAMES.map(g => `
     <a class="lesson-link"
@@ -170,63 +166,30 @@ function renderGames() {
 
       <span>${g.name}</span>
       <span class="tag">${g.tags.split(" ")[0]}</span>
-      <span class="fav">☆</span>
     </a>
   `).join("");
 }
 
-/* favorites */
-function getFavs() {
-  return JSON.parse(localStorage.getItem("favs") || "[]");
-}
-function setFavs(a) {
-  localStorage.setItem("favs", JSON.stringify(a));
-}
-
-/* render filter */
 function render() {
   const q = search.value.toLowerCase().trim();
-  const favs = getFavs();
   let count = 0;
 
   document.querySelectorAll(".lesson-link").forEach(card => {
-
     const name = card.dataset.name;
     const tags = card.dataset.tags;
 
-    let show = name.toLowerCase().includes(q) || tags.toLowerCase().includes(q);
-
-    if (mode === "fav" && !favs.includes(name)) show = false;
+    const show =
+      name.toLowerCase().includes(q) ||
+      tags.toLowerCase().includes(q);
 
     card.style.display = show ? "flex" : "none";
-
-    card.querySelector(".fav").textContent =
-      favs.includes(name) ? "★" : "☆";
-
     if (show) count++;
   });
 
   shown.textContent = count;
 }
 
-/* click */
 document.addEventListener("click", e => {
-
-  const fav = e.target.closest(".fav");
-  if (fav) {
-    const card = fav.closest(".lesson-link");
-    const name = card.dataset.name;
-
-    let favs = getFavs();
-    favs = favs.includes(name)
-      ? favs.filter(x => x !== name)
-      : [...favs, name];
-
-    setFavs(favs);
-    render();
-    return;
-  }
-
   const card = e.target.closest(".lesson-link");
   if (!card) return;
 
@@ -241,20 +204,17 @@ document.addEventListener("click", e => {
   iframe.src = url;
 });
 
-/* iframe load */
 iframe.addEventListener("load", () => {
   loader.style.display = "none";
   iframe.style.display = "block";
 });
 
-/* back */
 backBtn.addEventListener("click", () => {
   iframe.src = "";
   gameView.style.display = "none";
   homeView.style.display = "block";
 });
 
-/* about:blank */
 blankBtn.addEventListener("click", () => {
   const url = iframe.src;
   if (!url) return;
@@ -279,10 +239,8 @@ blankBtn.addEventListener("click", () => {
   win.document.close();
 });
 
-/* search */
 search.addEventListener("input", render);
 
-/* init */
 renderGames();
 render();
 
