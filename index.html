@@ -11,50 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="./style.css">
-
-<style>
-/* ===== FULL SCREEN GAME VIEW FIX ===== */
-
-#game-view {
-  display: none;
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #0f0f12;
-  z-index: 9999;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-}
-
-#game-frame {
-  width: 100%;
-  height: 100%;
-  border: none;
-  flex: 1;
-  display: block;
-}
-
-#loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #aaa;
-  font-size: 16px;
-  z-index: 10000;
-}
-
-#back-btn {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  z-index: 10000;
-}
-</style>
-
 </head>
 
 <body>
@@ -66,12 +22,12 @@
 
 <div class="stats-bar">
   <div class="stat">
-    <div class="stat-value">54</div>
+    <div class="stat-value">63</div>
     <div class="stat-label">Total</div>
   </div>
 
   <div class="stat">
-    <div class="stat-value" id="shown">54</div>
+    <div class="stat-value" id="shown">63</div>
     <div class="stat-label">Showing</div>
   </div>
 </div>
@@ -101,10 +57,13 @@
 <div id="game-view">
 
 <button id="back-btn" class="filter-btn">← Back</button>
+<button id="blank-btn" class="filter-btn">Open in Blank</button>
 
 <div id="loader" style="display:none;">Loading...</div>
 
 <iframe id="game-frame"></iframe>
+
+</div>
 
 </div>
 
@@ -170,7 +129,17 @@ const GAMES = [
   { id:"g51", name:"Silk Art", tags:"creative drawing relaxing" },
   { id:"g52", name:"Paper.io", tags:"multiplayer territory io" },
   { id:"g53", name:"Sandbox City", tags:"sandbox openworld chaos" },
-  { id:"g54", name:"Superhot", tags:"fps slowmotion action" }
+  { id:"g54", name:"Superhot", tags:"fps slowmotion action" },
+
+  { id:"g55", name:"Agar.io Lite", tags:"io multiplayer survival" },
+  { id:"g56", name:"Stickman Hook", tags:"skill physics swing" },
+  { id:"g57", name:"Cookie Clicker", tags:"idle clicker incremental" },
+  { id:"g58", name:"Nazi Zombies Portable", tags:"fps zombie survival shooter" },
+  { id:"g59", name:"Undertale Last Breath", tags:"rpg fangame bossfight" },
+  { id:"g60", name:"We Become What We Behold", tags:"simulation narrative social" },
+  { id:"g61", name:"Astra Client", tags:"minecraft utility client" },
+  { id:"g62", name:"Crazy Cattle 3D", tags:"racing chaos physics" },
+  { id:"g63", name:"Crazy Chicken 3D", tags:"racing chaos physics" }
 ];
 </script>
 
@@ -187,20 +156,17 @@ const gameView = document.getElementById("game-view");
 const iframe = document.getElementById("game-frame");
 const loader = document.getElementById("loader");
 const backBtn = document.getElementById("back-btn");
+const blankBtn = document.getElementById("blank-btn");
 
 let mode = "all";
 
-/* render games */
+/* render */
 function renderGames() {
   list.innerHTML = GAMES.map(g => `
     <a class="lesson-link"
        data-name="${g.name}"
        data-tags="${g.tags}"
        data-url="./lessons/${g.id}">
-
-      <img class="lesson-icon"
-           src="./lessons/${g.id}/icon.png"
-           onerror="this.replaceWith(document.createElement('div')).className='icon-placeholder'">
 
       <span>${g.name}</span>
       <span class="tag">${g.tags.split(" ")[0]}</span>
@@ -217,7 +183,7 @@ function setFavs(a) {
   localStorage.setItem("favs", JSON.stringify(a));
 }
 
-/* render filter/search */
+/* render filter */
 function render() {
   const q = search.value.toLowerCase().trim();
   const favs = getFavs();
@@ -243,7 +209,7 @@ function render() {
   shown.textContent = count;
 }
 
-/* click handling */
+/* click */
 document.addEventListener("click", e => {
 
   const fav = e.target.closest(".fav");
@@ -275,7 +241,7 @@ document.addEventListener("click", e => {
   iframe.src = url;
 });
 
-/* iframe loaded */
+/* iframe load */
 iframe.addEventListener("load", () => {
   loader.style.display = "none";
   iframe.style.display = "block";
@@ -286,6 +252,31 @@ backBtn.addEventListener("click", () => {
   iframe.src = "";
   gameView.style.display = "none";
   homeView.style.display = "block";
+});
+
+/* about:blank */
+blankBtn.addEventListener("click", () => {
+  const url = iframe.src;
+  if (!url) return;
+
+  const win = window.open("about:blank", "_blank");
+
+  win.document.write(`
+    <html>
+      <head>
+        <title>Game</title>
+        <style>
+          html,body { margin:0; height:100%; background:black; }
+          iframe { width:100%; height:100%; border:none; }
+        </style>
+      </head>
+      <body>
+        <iframe src="${url}" allowfullscreen></iframe>
+      </body>
+    </html>
+  `);
+
+  win.document.close();
 });
 
 /* search */
