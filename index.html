@@ -33,14 +33,12 @@
   display: block;
 }
 
-#back-btn, #blank-btn {
+#back-btn {
   position: absolute;
   top: 10px;
+  left: 10px;
   z-index: 10000;
 }
-
-#back-btn { left: 10px; }
-#blank-btn { left: 110px; }
 
 #loader {
   position: absolute;
@@ -72,13 +70,18 @@
   </div>
 </div>
 
+<!-- ================= CONTROLS ================= -->
 <div class="controls">
   <input id="search" class="search-input" placeholder="Search lessons or tags...">
   <button class="filter-btn active">All</button>
+
+  <!-- ABOUT:BLANK BUTTON MOVED HERE -->
+  <button id="blank-btn" class="filter-btn">Open in Blank</button>
 </div>
 
-<!-- ================= HOME ================= -->
+<!-- ================= HOME VIEW ================= -->
 <div id="home-view">
+
   <div id="list"></div>
 
   <div class="request-box">
@@ -90,13 +93,13 @@
        Request a Lesson
     </a>
   </div>
+
 </div>
 
-<!-- ================= GAME ================= -->
+<!-- ================= GAME VIEW ================= -->
 <div id="game-view">
 
 <button id="back-btn" class="filter-btn">← Back</button>
-<button id="blank-btn" class="filter-btn">Open in Blank</button>
 
 <div id="loader" style="display:none;">Loading...</div>
 
@@ -106,7 +109,7 @@
 
 </div>
 
-<!-- ================= DATA ================= -->
+<!-- ================= GAME DATA ================= -->
 <script>
 const GAMES = [
   { id:"g1", name:"1.8.8", tags:"survival minecraft" },
@@ -258,6 +261,7 @@ backBtn.addEventListener("click", () => {
   homeView.style.display = "block";
 });
 
+/* ABOUT:BLANK (HOME PAGE) */
 blankBtn.addEventListener("click", () => {
   const win = window.open("about:blank", "_blank");
 
