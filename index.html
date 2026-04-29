@@ -11,6 +11,46 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="./style.css">
+
+<style>
+/* ================= FULLSCREEN GAME FIX ================= */
+
+#game-view {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  background: #0f0f12;
+  z-index: 9999;
+  flex-direction: column;
+}
+
+#game-frame {
+  width: 100%;
+  height: 100vh;
+  border: none;
+  display: block;
+}
+
+#back-btn, #blank-btn {
+  position: absolute;
+  top: 10px;
+  z-index: 10000;
+}
+
+#back-btn { left: 10px; }
+#blank-btn { left: 110px; }
+
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  color: #aaa;
+}
+</style>
 </head>
 
 <body>
@@ -34,10 +74,10 @@
 
 <div class="controls">
   <input id="search" class="search-input" placeholder="Search lessons or tags...">
-  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn active">All</button>
 </div>
 
-<!-- ================= HOME VIEW ================= -->
+<!-- ================= HOME ================= -->
 <div id="home-view">
   <div id="list"></div>
 
@@ -52,7 +92,7 @@
   </div>
 </div>
 
-<!-- ================= GAME VIEW ================= -->
+<!-- ================= GAME ================= -->
 <div id="game-view">
 
 <button id="back-btn" class="filter-btn">← Back</button>
@@ -66,7 +106,7 @@
 
 </div>
 
-<!-- ================= GAME DATA ================= -->
+<!-- ================= DATA ================= -->
 <script>
 const GAMES = [
   { id:"g1", name:"1.8.8", tags:"survival minecraft" },
@@ -154,6 +194,7 @@ const homeView = document.getElementById("home-view");
 const gameView = document.getElementById("game-view");
 const iframe = document.getElementById("game-frame");
 const loader = document.getElementById("loader");
+
 const backBtn = document.getElementById("back-btn");
 const blankBtn = document.getElementById("blank-btn");
 
@@ -163,6 +204,10 @@ function renderGames() {
        data-name="${g.name}"
        data-tags="${g.tags}"
        data-url="./lessons/${g.id}">
+
+      <img class="lesson-icon"
+           src="./lessons/${g.id}/icon.png"
+           onerror="this.remove()">
 
       <span>${g.name}</span>
       <span class="tag">${g.tags.split(" ")[0]}</span>
@@ -193,15 +238,13 @@ document.addEventListener("click", e => {
   const card = e.target.closest(".lesson-link");
   if (!card) return;
 
-  const url = card.dataset.url;
-
   homeView.style.display = "none";
   gameView.style.display = "flex";
 
   loader.style.display = "block";
   iframe.style.display = "none";
 
-  iframe.src = url;
+  iframe.src = card.dataset.url;
 });
 
 iframe.addEventListener("load", () => {
@@ -216,23 +259,21 @@ backBtn.addEventListener("click", () => {
 });
 
 blankBtn.addEventListener("click", () => {
-  const url = iframe.src;
-  if (!url) return;
-
   const win = window.open("about:blank", "_blank");
 
   win.document.write(`
+    <!DOCTYPE html>
     <html>
-      <head>
-        <title>Game</title>
-        <style>
-          html,body { margin:0; height:100%; background:black; }
-          iframe { width:100%; height:100%; border:none; }
-        </style>
-      </head>
-      <body>
-        <iframe src="${url}" allowfullscreen></iframe>
-      </body>
+    <head>
+      <title>Lessons</title>
+      <style>
+        html,body { margin:0; height:100%; background:#0f0f12; }
+        iframe { width:100%; height:100%; border:none; }
+      </style>
+    </head>
+    <body>
+      <iframe src="https://joeyc1pro.github.io/amplify-home-xyz/"></iframe>
+    </body>
     </html>
   `);
 
