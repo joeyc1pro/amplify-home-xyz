@@ -58,12 +58,12 @@
 
 <div class="stats-bar">
   <div class="stat">
-    <div class="stat-value">65</div>
+    <div class="stat-value">71</div>
     <div class="stat-label">Total</div>
   </div>
 
   <div class="stat">
-    <div class="stat-value" id="shown">65</div>
+    <div class="stat-value" id="shown">71</div>
     <div class="stat-label">Showing</div>
   </div>
 </div>
@@ -76,17 +76,20 @@
 
 <!-- HOME -->
 <div id="home-view">
+
   <div id="list"></div>
 
   <div class="request-box">
     <h2>Don't see your lesson?</h2>
     <p>Request one and we'll try to add it.</p>
+
     <a class="request-btn"
        href="https://docs.google.com/forms/d/e/1FAIpQLSfCt28OvhRHKWW-9WQraqTq5gkupF5agRTWlM_FKZxYIfXxLQ/viewform?usp=header"
        target="_blank">
        Request a Lesson
     </a>
   </div>
+
 </div>
 
 <!-- GAME VIEW -->
@@ -104,6 +107,7 @@
 
 <script>
 const GAMES = [
+
   { id:"g1", name:"1.8.8", tags:"survival minecraft" },
   { id:"g2", name:"Among Us Online", tags:"multiplayer social" },
   { id:"g3", name:"Aquapark.io", tags:"racing physics" },
@@ -177,7 +181,16 @@ const GAMES = [
 
   { id:"g64", name:"Granny", tags:"horror survival stealth" },
 
-  { id:"vault", name:"Game Vault", tags:"hub collection iframe" }
+  { id:"vault", name:"Game Vault", tags:"hub collection iframe" },
+
+  { id:"g65", name:"Eagle Ride", tags:"flying adventure skill" },
+  { id:"g66", name:"FNAF", tags:"horror survival animatronic" },
+  { id:"g67", name:"FNAF 2", tags:"horror survival animatronic" },
+  { id:"g68", name:"FNAF 3", tags:"horror survival animatronic" },
+  { id:"g69", name:"Five Nights at Winstons", tags:"horror parody survival" },
+
+  { id:"lcd", name:"Lucide", tags:"hub tools collection iframe" }
+
 ];
 </script>
 
@@ -218,6 +231,7 @@ function render() {
   let count = 0;
 
   document.querySelectorAll(".lesson-link").forEach(card => {
+
     const name = card.dataset.name;
     const tags = card.dataset.tags;
 
@@ -226,6 +240,7 @@ function render() {
       tags.toLowerCase().includes(q);
 
     card.style.display = show ? "flex" : "none";
+
     if (show) count++;
   });
 
@@ -233,6 +248,7 @@ function render() {
 }
 
 document.addEventListener("click", e => {
+
   const card = e.target.closest(".lesson-link");
   if (!card) return;
 
@@ -257,6 +273,7 @@ backBtn.addEventListener("click", () => {
 });
 
 blankBtn.addEventListener("click", () => {
+
   const win = window.open("about:blank", "_blank");
 
   win.document.write(`
@@ -264,11 +281,22 @@ blankBtn.addEventListener("click", () => {
     <html>
     <head>
       <title>Lessons</title>
+
       <style>
-        html,body { margin:0; height:100%; background:#0f0f12; }
-        iframe { width:100%; height:100%; border:none; }
+        html,body{
+          margin:0;
+          height:100%;
+          background:#0f0f12;
+        }
+
+        iframe{
+          width:100%;
+          height:100%;
+          border:none;
+        }
       </style>
     </head>
+
     <body>
       <iframe src="https://joeyc1pro.github.io/amplify-home-xyz/"></iframe>
     </body>
