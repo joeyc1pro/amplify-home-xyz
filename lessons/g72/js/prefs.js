@@ -1,1 +1,0 @@
-export function getCurrency(){switch(localStorage.prefcurrency){case"dollar":return"$";default:return"€"}}
