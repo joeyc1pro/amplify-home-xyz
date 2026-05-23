@@ -1,0 +1,1 @@
+export class SeedRandom{#t=4294967087;#s=65539;#i=4294965887;#e=65537;#h=0;#a=0;constructor(t=Date.now()){this.#h=t%(this.#t-1)+1;this.#a=t%(this.#i-1)+1;this.skip(7)}next(){this.skip(1);return(this.#h+this.#a)%4294965886/4294965886}skip(t){for(let s=0;s<t;s++){this.#h=this.#h*this.#s%this.#t;this.#a=this.#a*this.#e%this.#i}}}

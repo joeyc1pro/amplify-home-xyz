@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    // Force HTTPS
+    if (
+      window.location.protocol !== 'https:' &&
+      window.location.hostname !== 'localhost' &&
+      window.location.hostname !== '127.0.0.1'
+    ) {
+      window.location.protocol = 'https:';
+    }
+  </script>
+
+  <script>
+    if (!('noModule' in HTMLScriptElement.prototype)) {
+      alert('This browser is unsupported. Please use a modern browser like Chrome.');
+    }
+  </script>
+
+  <!-- Google tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PTSYX21VVJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied'
+    });
+
+    gtag('js', new Date());
+    gtag('config', 'G-PTSYX21VVJ');
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+
+  <meta name="robots" content="nosnippet,noimageindex" />
+
+  <title>Case Clicker 2 - MTSL</title>
+
+  <meta name="description"
+    content="Case Clicker 2, a clicker game based on Counter Strike: Global Offensive" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
+    rel="stylesheet" />
+
+  <!-- FIXED CSS -->
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+
+  <div class="standard-nav">
+    <a href="//mtsl.dk" id="focus-home">
+      <div class="nav-button">MTSL.DK</div>
+    </a>
+
+    <div class="nav-separator"></div>
+
+    <div class="nav-button" showpage="welcome">Case Clicker 2</div>
+    <div class="nav-button" showpage="about">About & Settings</div>
+
+    <div class="nav-button" style="color:red;font-weight:bold;">
+      Online Features aren't supported!
+    </div>
+
+    <a href="https://discord.gg/fcAEvPeQ9p">
+      <div class="nav-button" id="discord">Discord</div>
+    </a>
+
+    <div class="right"></div>
+
+    <div id="nav-profile"></div>
+
+    <div class="nav-separator"></div>
+
+    <a href="https://twitter.com/messages/778575498544869376-778575498544869376"
+      target="_blank" rel="noopener noreferrer">
+      <div class="nav-button">Feedback</div>
+    </a>
+  </div>
+
+  <div id="loading">
+    <h1>Case Clicker 2</h1>
+    <p>A clicker game based on Counter Strike 2</p>
+    <p id="loading-text">Loading...</p>
+    <p id="loading-status">Loading Website...</p>
+
+    <span id="loading-progressbar">
+      <span id="loading-progress"></span>
+    </span>
+  </div>
+
+  <button id="mobile-nav-button">Menu</button>
+
+  <div id="menu">
+    <div id="stats">
+      <div id="currency">
+        <div id="money"></div>
+      </div>
+
+      <div id="currency-other">
+        <div id="tickets"></div>
+        <div id="tokens"></div>
+      </div>
+
+      <div id="level">
+        <div id="level-bar-text">
+          <div id="level-bar-text-left"></div>
+          <div id="level-bar-text-right"></div>
+        </div>
+
+        <div id="level-bar">
+          <div id="level-bar-p"></div>
+        </div>
+
+        <div id="level-image"></div>
+        <div id="level-title"></div>
+      </div>
+    </div>
+
+    <div id="nav">
+
+      <button showpage="click">
+        <img src="images/click.png"> Earn
+      </button>
+
+      <button showpage="inventory">
+        <img src="images/inventory.png"> Inventory
+      </button>
+
+      <button showpage="shop">
+        <img src="images/shop.png"> Shop
+      </button>
+
+      <button showpage="betting">
+        <img src="images/casino.png"> Games
+      </button>
+
+      <button showpage="upgrades">
+        <img src="images/upgrades.png"> Upgrades
+      </button>
+
+      <button showpage="tradeup">
+        <img src="images/tradeup.png"> Trade up
+      </button>
+
+      <button showpage="missions">
+        <img src="images/missions.png"> Missions
+      </button>
+
+    </div>
+  </div>
+
+  <div id="pages"></div>
+
+  <div id="chat"></div>
+
+  <div id="version-version">v2.19</div>
+
+  <!-- COOKIES -->
+  <div id="cookies">
+    <span>
+      This website uses cookies
+      <a href="#" onclick="localStorage.cookiesAccepted='1';document.getElementById('cookies').remove();">
+        Accept
+      </a>
+      |
+      <a href="#" onclick="localStorage.cookiesAccepted='2';document.getElementById('cookies').remove();">
+        Deny
+      </a>
+    </span>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="./js/lib/2q.js"></script>
+  <script src="./js/helper/debug.js"></script>
+  <script src="./script.js" type="module"></script>
+
+  <script>
+    document.body.classList.add('dom-loaded');
+  </script>
+
+  <!-- RECAPTCHA -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+</body>
+</html>
