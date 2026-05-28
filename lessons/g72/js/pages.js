@@ -1,0 +1,1 @@
+import e from"./select.js?v=2.19";class t{pages={};currentPage=null;makePage(e,t){this.pages[e]={pageRoot:t};return t}createPage(e,t=[]){const a=q(".page",[...t]);a.setAttribute("page",e);this.pages[e]={pageRoot:a};return a}showPage(t){this.currentPage=t;const a=this.pages[t];e("#pages").innerHTML="";if(a){e("#pages").appendChild(a.pageRoot)}}}export const Pages=new t;

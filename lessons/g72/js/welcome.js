@@ -1,0 +1,1 @@
+import { Pages as e } from "../js/pages.js?v=2.19"; e.makePage("welcome", document.getElementById("welcome-page-static"));

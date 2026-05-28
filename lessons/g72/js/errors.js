@@ -1,0 +1,1 @@
+export function showError(o,t){const d=q(".dialog-overlay");const e=d.q(".full-dialog").q(".dialog-body");e.q("button.popup-exit-button.right",{onclick(){document.body.removeChild(d)}});e.q(".dialog-header",{text:o});e.q(".dialog-p",{text:t});document.body.appendChild(d)}

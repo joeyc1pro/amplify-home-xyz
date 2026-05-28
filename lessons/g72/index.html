@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <script>
+      // Force HTTPS
+      if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost')
+        window.location.protocol = 'https:';
+    </script>
+    <script>
+      if (!('noModule' in HTMLScriptElement.prototype))
+        alert('This browser is unsupported, and the game may not work correctly. Please use a modern browser like Google Chrome.');
+      // window.location.href = 'https://mtsl.dk/e/unsupportedbrowser#r=g=csc2';
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PTSYX21VVJ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+
+      gtag('js', new Date());
+      gtag('config', 'G-PTSYX21VVJ');
+    </script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="robots" content="nosnippet,noimageindex" />
+    <title>Case Clicker 2 - MTSL</title>
+    <meta name="description"
+      content="Case Clicker 2, a clicker game based on the popular game Counter Strike: Global Offensive" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=2.19" />
+  </head>
+
+  <body>
+    <!--
+    -->
+    <!-- (MTSL) NAV -->
+    <div class="standard-nav">
+      <a href="//mtsl.dk" id="focus-home">
+        <div class="nav-button">MTSL.DK</div>
+      </a>
+      <div class="nav-separator"></div>
+      <div class="nav-button" showpage="welcome">Case Clicker 2</div>
+      <div class="nav-button" showpage="about">About & Settings</div>
+      <div class="nav-button" showpage="" style = "color:red;font-weight: bold; text-decoration: none;">Online Features aren't supported!</div>
+      <div class="nav-button" style="color:#fc0;font-weight:bold;background:#333;margin-right:12px;display:none"
+        id="recover-btn">
+        Did you lose your save? Click to Recover It!
+      </div>
+      <div class="nav-button" style="color:#fff;font-weight:bold;background:#333;margin-right:12px;display:none"
+        id="dismiss-recover-btn">
+        Or Dismiss!
+      </div>
+      <a href="https://discord.gg/fcAEvPeQ9p">
+        <div class="nav-button" id="discord">Discord</div>
+        <script>
+          fetch('https://discord.com/api/guilds/838043097207668747/widget.json')
+            .then(res => res.json())
+            .then(res => discord.innerHTML = 'Discord <span class="nav-count">' + parseInt(res.presence_count) + '</span>');
+          setTimeout(() => {
+            discord.innerHTML = 'Discord';
+          }, 10000);
+        </script>
+      </a>
+      <div class="right"></div>
+      <!-- Local Profile -->
+      <div id="nav-profile"></div>
+      <!-- Authentication for Firebase -->
+      <div class="nav-separator"></div>
+      <!-- Bugs -->
+      <a href="https://twitter.com/messages/778575498544869376-778575498544869376?recipient_id=778575498544869376&text=I%20found%20a%20bug!"
+        rel="noopener noreferrer" target="_blank">
+        <div class="nav-button">Feedback</div>
+      </a>
+    </div>
+    <!-- Loading Splash -->
+    <div id="loading">
+      <h1>Case Clicker 2</h1>
+      <p>A clicker game based on Counter Strike 2</p>
+      <p id="loading-text">Loading...</p>
+      <p id="loading-status">Loading Website...</p>
+      <span id="loading-progressbar">
+        <span id="loading-progress"></span>
+      </span>
+    </div>
+    <!-- SIDE NAV -->
+    <button id="mobile-nav-button">Menu</button>
+    <div id="menu">
+      <div id="stats">
+        <div id="currency">
+          <div id="money" tipPosition="center"></div>
+        </div>
+        <div id="currency-other">
+          <div id="tickets"></div>
+          <div id="tokens"></div>
+        </div>
+        <div id="level">
+          <div id="level-bar-text">
+            <div id="level-bar-text-left"></div>
+            <div id="level-bar-text-right"></div>
+          </div>
+          <div id="level-bar">
+            <div id="level-bar-p"></div>
+          </div>
+          <div id="level-image"></div>
+          <div id="level-title"></div>
+        </div>
+      </div>
+      <div id="nav">
+        <div id="lucky-wheel-nav">
+          <button showpage="spin" nbtn="spin">
+            <img src="images/luckywheel.png">Lucky Wheel
+          </button>
+        </div>
+        <button showpage="click" nbtn="click">
+          <img src="images/click.png">
+          Earn
+        </button>
+        <button showpage="inventory" nbtn="inventory">
+          <img src="images/inventory.png">
+          Inventory
+        </button>
+        <button showpage="shop" nbtn="shop">
+          <img src="images/shop.png">
+          Shop
+        </button>
+        <button showpage="betting" nbtn="betting">
+          <img src="images/casino.png">
+          Games
+        </button>
+        <button showpage="upgrades" nbtn="upgrades">
+          <img src="images/upgrades.png">
+          Upgrades
+          <div id="upgrades_available"></div>
+        </button>
+        <button showpage="tradeup" nbtn="tradeup">
+          <img src="images/tradeup.png">
+          Trade up
+        </button>
+        <button showpage="missions" nbtn="missions">
+          <img src="images/missions.png">
+          Missions
+          <div id="missions-progressbar">
+            <div id="missions-progress"></div>
+          </div>
+          <div id="missions_not_collected"></div>
+        </button>
+        <div class="combo-nav hide-on-mobile">
+          <button showpage="achievements" nbtn="achievements" tip="Achievements" tipPosition="center">
+            <img src="images/achievements.png">
+            <div id="achievements_not_collected"></div>
+          </button>
+          <button showpage="collection" nbtn="collection" tip="Collection Book" tipPosition="center">
+            <img src="images/collection-book.png">
+          </button>
+        </div>
+        <div class="show-on-mobile">
+          <button showpage="achievements" nbtn="achievements">
+            <img src="images/tradeup.png">
+            Achievements
+            <div id="achievements_not_collected_b"></div>
+          </button>
+          <button showpage="collection" nbtn="collection">
+            <img src="images/collection-book.png">
+            Collection
+          </button>
+          <button showpage="about" nbtn="about">
+            <img src="images/settings.png">
+            About & Settings
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- PAGES -->
+    <div id="pages">
+      <div class="page" page="welcome"
+        style="background: radial-gradient(circle at center bottom, rgb(12, 37, 36), rgb(47, 36, 49)); box-shadow: rgb(34, 34, 34) 0px 0px 32px 4px inset;"
+        id="welcome-page-static">
+        <div class="welcome-page-title">Case Clicker 2</div>
+        <div class="welcome-page-information-row">
+          <div>
+            <div class="welcome-page-information-box">
+              <h2 class="welcome-page-information-box-title">Welcome!</h2>
+              <div class="welcome-page-information-box-content">
+                <p>Welcome to Case Clicker 2.</p>
+                <p>The successor to my old game (now called) <a href="https://mtsl.dk/csgo">Case Clicker Classic</a>!
+                </p>
+                <p>If you know my old game, this should be very similar, and you can properly go play straight away via
+                  the navigation on the left.</p>
+                <p>If you don't know what Case Clicker is: it's a game about collecting skins from cases and gambling
+                  them away.</p>
+                <p>Start your game by going to your inventory and try opening the case there.</p>
+                <p>To get more cases, go to the Earn tab and click to earn money. With the money you can buy new cases
+                  from the shop, which will appear in your inventory.</p>
+                <p>To gamble your skins, see what's inside the Games tab.</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="welcome-page-information-box">
+              <h2 class="welcome-page-information-box-title">Version 19 out now! <span
+                  style="font-size: 0.6em; font-style: italic;">v2.19</span></h2>
+              <div class="welcome-page-information-box-content">
+                <ul>
+                  <li>Added Online Jackpots. Bet against other CC2 players, winner takes all.</li>
+                  <li>Added Stickers. Unlock them with the "Unlock: Sticker Capsules" Upgrade.</li>
+                  <li>Added 22 new upgrades.</li>
+                  <li>Added support for $. Prices are not converted, since $ and € are close enough (1.00€ = $1.07).
+                  </li>
+                  <li>The cooldown after completing a mission is now 1/4 of the cooldown when discarding a mission.</li>
+                  <li>Updated store and case prices.</li>
+                  <li>Mission rewards and difficulty now grow by for each level you have.</li>
+                  <li>See all changes in settings.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- OTHER -->
+    <div id="chat"></div>
+    <div id="version-version">v2.19</div>
+    <div id="cookies">
+      <script>
+        function consentGranted() {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (localStorage.cookiesAccepted==='1') consentGranted();
+      </script>
+      <span>This website uses cookies to store your save and optionally for analytics<span>-</span><a
+          href="//mtsl.dk/cookies">Learn more</a><span>-</span><a href="#"
+          onclick="document.body.removeChild(document.getElementById('cookies'));localStorage.cookiesAccepted='1';consentGranted()">Accept</a><span>-</span><a
+          href="#"
+          onclick="document.body.removeChild(document.getElementById('cookies'));localStorage.cookiesAccepted='2';">Deny</a>
+      </span>
+      <script>if (localStorage.cookiesAccepted === '1' || localStorage.cookiesAccepted === '2') document.body.removeChild(document.getElementById('cookies'));</script>
+    </div>
+    <script>
+    </script>
+    <script src="./js/lib/2q.js"></script>
+    <script src="./js/helper/debug.js"></script>
+    <script src="./script.js?v=2.19" type="module"></script>
+    <script>document.body.classList.add('dom-loaded');</script>
+    <script>if (location.hostname !== 'localhost') {
+        console.log('%cHELLO YOU!', 'color:red;font-size:80px;');
+        console.log('%cPlease don\'t copy-paste code in here, as it can lead to self-xss attacks, compromising you.\nMake sure you know and trust what you paste.', 'font-size:20px;');
+      }
+    </script>
+    <!-- reCaptcha -->
+    <script type="text/javascript">
+      window.reCaptchaReady = false;
+      var onloadCallback = function () {
+        window.reCaptchaReady = true;
+      };
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+    </script>
+  </body>
+
+</html>

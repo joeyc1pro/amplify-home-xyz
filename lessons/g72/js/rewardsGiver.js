@@ -1,0 +1,1 @@
+import{user as e}from"../script.js?v=2.19";export function giveRewards(r){for(const a of r){switch(a.type){case"upgrade":{if(a.upgrade){if(a.increase)e.upgrades[a.upgrade]+=a.increase;else if(a.set)e.upgrades[a.upgrade]=a.set}break}case"money":{if(a.total)e.money+=a.total;break}}}}
