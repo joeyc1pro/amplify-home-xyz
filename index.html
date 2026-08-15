@@ -51,6 +51,57 @@
 
 <body>
 
+<script>
+/*
+  Automatically attempt to open the Lessons homepage
+  inside a new about:blank tab when the site loads.
+*/
+window.addEventListener("load", function () {
+
+  if (sessionStorage.getItem("aboutBlankOpened") !== "1") {
+
+    const win = window.open("about:blank", "_blank");
+
+    if (win) {
+      sessionStorage.setItem("aboutBlankOpened", "1");
+
+      win.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Lessons</title>
+          <style>
+            html,body{
+              margin:0;
+              width:100%;
+              height:100%;
+              background:#0f0f12;
+              overflow:hidden;
+            }
+
+            iframe{
+              width:100%;
+              height:100%;
+              border:none;
+              display:block;
+            }
+          </style>
+        </head>
+
+        <body>
+          <iframe
+            src="https://joeyc1pro.github.io/amplify-home-xyz/">
+          </iframe>
+        </body>
+        </html>
+      `);
+
+      win.document.close();
+    }
+  }
+});
+</script>
+
 <div class="wrap">
 
 <h1>Lessons</h1>
@@ -58,12 +109,12 @@
 
 <div class="stats-bar">
   <div class="stat">
-    <div class="stat-value">74</div>
+    <div class="stat-value">73</div>
     <div class="stat-label">Total</div>
   </div>
 
   <div class="stat">
-    <div class="stat-value" id="shown">74</div>
+    <div class="stat-value" id="shown">73</div>
     <div class="stat-label">Showing</div>
   </div>
 </div>
@@ -196,9 +247,7 @@ const GAMES = [
   { id:"g72", name:"Case Clicker 2", tags:"simulation idle cases" }
 
 ];
-</script>
 
-<script>
 document.addEventListener("DOMContentLoaded", () => {
 
 const search = document.getElementById("search");
@@ -235,6 +284,7 @@ function render() {
   let count = 0;
 
   document.querySelectorAll(".lesson-link").forEach(card => {
+
     const name = card.dataset.name;
     const tags = card.dataset.tags;
 
@@ -251,6 +301,7 @@ function render() {
 }
 
 document.addEventListener("click", e => {
+
   const card = e.target.closest(".lesson-link");
   if (!card) return;
 
@@ -275,7 +326,10 @@ backBtn.addEventListener("click", () => {
 });
 
 blankBtn.addEventListener("click", () => {
+
   const win = window.open("about:blank", "_blank");
+
+  if (!win) return;
 
   win.document.write(`
     <!DOCTYPE html>
@@ -283,10 +337,20 @@ blankBtn.addEventListener("click", () => {
     <head>
       <title>Lessons</title>
       <style>
-        html,body{margin:0;height:100%;background:#0f0f12;}
-        iframe{width:100%;height:100%;border:none;}
+        html,body{
+          margin:0;
+          height:100%;
+          background:#0f0f12;
+        }
+
+        iframe{
+          width:100%;
+          height:100%;
+          border:none;
+        }
       </style>
     </head>
+
     <body>
       <iframe src="https://joeyc1pro.github.io/amplify-home-xyz/"></iframe>
     </body>
