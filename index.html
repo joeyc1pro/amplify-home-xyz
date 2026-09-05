@@ -52,10 +52,6 @@
 <body>
 
 <script>
-/*
-  Automatically attempt to open the Lessons homepage
-  inside a new about:blank tab when the site loads.
-*/
 window.addEventListener("load", function () {
 
   if (sessionStorage.getItem("aboutBlankOpened") !== "1") {
@@ -109,12 +105,12 @@ window.addEventListener("load", function () {
 
 <div class="stats-bar">
   <div class="stat">
-    <div class="stat-value">73</div>
+    <div class="stat-value">78</div>
     <div class="stat-label">Total</div>
   </div>
 
   <div class="stat">
-    <div class="stat-value" id="shown">73</div>
+    <div class="stat-value" id="shown">78</div>
     <div class="stat-label">Showing</div>
   </div>
 </div>
@@ -244,7 +240,13 @@ const GAMES = [
 
   { id:"g70", name:"Tuff Client", tags:"minecraft utility client" },
   { id:"g71", name:"Ice Dodo", tags:"skill racing physics" },
-  { id:"g72", name:"Case Clicker 2", tags:"simulation idle cases" }
+  { id:"g72", name:"Case Clicker 2", tags:"simulation idle cases" },
+
+  { id:"g73", name:"Minecraft 1.16", tags:"survival minecraft" },
+  { id:"g74", name:"Pixel Client", tags:"minecraft utility client" },
+  { id:"g75", name:"Escape Road 3", tags:"driving racing action" },
+  { id:"g76", name:"Pokemon Emerald", tags:"rpg adventure pokemon" },
+  { id:"g77", name:"EB Client", tags:"minecraft utility client" }
 
 ];
 
